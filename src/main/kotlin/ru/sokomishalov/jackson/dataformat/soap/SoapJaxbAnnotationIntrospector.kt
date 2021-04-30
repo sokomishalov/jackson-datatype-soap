@@ -15,9 +15,7 @@ import javax.xml.bind.annotation.XmlElement
 import javax.xml.bind.annotation.XmlElementWrapper
 
 
-open class SoapJaxbAnnotationIntrospector @JvmOverloads constructor(
-    typeFactory: TypeFactory = TypeFactory.defaultInstance()
-) : JaxbAnnotationIntrospector(typeFactory) {
+internal class SoapJaxbAnnotationIntrospector(typeFactory: TypeFactory) : JaxbAnnotationIntrospector(typeFactory) {
 
     override fun findNamespace(ann: Annotated): String? = ann.rawType?.let { t ->
         val annotationNamespace = ann.annotated.getAnnotation(XmlElement::class.java)?.namespace
@@ -47,6 +45,6 @@ open class SoapJaxbAnnotationIntrospector @JvmOverloads constructor(
         else -> super.findWrapperName(ann)
     }
 
-    protected val Class<*>.isFromJdk: Boolean get() = javaClass.name.startsWith("java")
-    protected val Class<*>.namespace: String get() = NamespaceCache.getNamespace(this)
+    private val Class<*>.isFromJdk: Boolean get() = javaClass.name.startsWith("java")
+    private val Class<*>.namespace: String get() = NamespaceCache.getNamespace(this)
 }

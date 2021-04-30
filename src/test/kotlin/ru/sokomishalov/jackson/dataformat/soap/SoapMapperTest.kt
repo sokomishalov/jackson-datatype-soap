@@ -1,6 +1,5 @@
 package ru.sokomishalov.jackson.dataformat.soap
 
-import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import com.fasterxml.jackson.module.kotlin.readValue
 import com.oracle.xmlns.apps.mdm.customer.GetPersonInput
 import com.oracle.xmlns.apps.mdm.customer.GetPersonOutput
@@ -51,7 +50,7 @@ class SoapMapperTest {
         val content = readResource("/example/get_person_output.xml")
         val soapEnvelope = mapper.readValue<SoapEnvelope<GetPersonInput?, GetPersonOutput?>>(content)
 
-        logInfo { MAPPER.writeValueAsString(soapEnvelope) }
+        logInfo { mapper.writeValueAsString(soapEnvelope) }
         assertNotNull(soapEnvelope)
 
         assertNotNull(soapEnvelope.header)
@@ -108,11 +107,11 @@ class SoapMapperTest {
     }
 
     @Test
-    open fun `Deserialize pojo with ws addressing`() {
+    fun `Deserialize pojo with ws addressing`() {
         val content = readResource("/example/get_person_output_ws_addr.xml")
-        val soapEnvelope = mapper.readValue<SoapEnvelope<SoapAddressingHeaders, GetPersonOutput>>(content)
+        val soapEnvelope = mapper.readValue<SoapEnvelope<SoapAddressingHeaders?, GetPersonOutput?>>(content)
 
-        logInfo { MAPPER.writeValueAsString(soapEnvelope) }
+        logInfo { mapper.writeValueAsString(soapEnvelope) }
         assertNotNull(soapEnvelope)
 
         assertNotNull(soapEnvelope.header)
@@ -137,11 +136,11 @@ class SoapMapperTest {
     }
 
     @Test
-    open fun `Deserialize soap 1_1 fault`() {
+    fun `Deserialize soap 1_1 fault`() {
         val content = readResource("/example/soap_fault_1_1.xml")
-        val soapFault = assertFailsWith<SoapFault> { mapper.readValue<GetPersonOutput>(content) }
+        val soapFault = assertFailsWith<SoapFault> { mapper.readValue<SoapEnvelope<Nothing?, GetPersonOutput?>>(content) }
 
-        logInfo { MAPPER.writeValueAsString(soapFault) }
+        logInfo { mapper.writeValueAsString(soapFault) }
         assertNotNull(soapFault)
         assertNotNull(soapFault)
         assertFalse { soapFault.message.isNullOrBlank() }
@@ -149,11 +148,11 @@ class SoapMapperTest {
     }
 
     @Test
-    open fun `Deserialize soap 1_2 fault`() {
+    fun `Deserialize soap 1_2 fault`() {
         val content = readResource("/example/soap_fault_1_2.xml")
-        val soapFault = assertFailsWith<SoapFault> { mapper.readValue<GetPersonOutput>(content) }
+        val soapFault = assertFailsWith<SoapFault> { mapper.readValue<SoapEnvelope<Nothing?, GetPersonOutput?>>(content) }
 
-        logInfo { MAPPER.writeValueAsString(soapFault) }
+        logInfo { mapper.writeValueAsString(soapFault) }
         assertNotNull(soapFault)
         assertNotNull(soapFault)
         assertFalse { soapFault.message.isNullOrBlank() }
@@ -162,8 +161,6 @@ class SoapMapperTest {
 
     private fun readResource(path: String) = javaClass.getResource(path)?.readText().orEmpty()
 
-    companion object : Loggable {
-        private val MAPPER = jacksonObjectMapper()
-    }
+    companion object : Loggable
 
 }

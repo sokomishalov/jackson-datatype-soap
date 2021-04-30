@@ -9,7 +9,6 @@ import com.fasterxml.jackson.databind.PropertyNamingStrategies.UPPER_CAMEL_CASE
 import com.fasterxml.jackson.databind.SerializationFeature.FAIL_ON_EMPTY_BEANS
 import com.fasterxml.jackson.databind.SerializationFeature.WRITE_DATES_AS_TIMESTAMPS
 import com.fasterxml.jackson.dataformat.xml.XmlFactory
-import com.fasterxml.jackson.module.jaxb.JaxbAnnotationIntrospector
 import com.fasterxml.jackson.module.jaxb.JaxbAnnotationModule
 import com.fasterxml.jackson.module.kotlin.registerKotlinModule
 import org.codehaus.stax2.XMLOutputFactory2.P_AUTOMATIC_NS_PREFIX
@@ -23,13 +22,12 @@ import ru.sokomishalov.jackson.dataformat.soap.ser.SoapEnvelopeSerializers
 open class SoapModule @JvmOverloads constructor(
     private val namespacePrefix: String = "ns",
     private val soapEnvelopeNamespace: String = SOAP_11_ENVELOPE_NAMESPACE,
-    private val serializationInclusion: Include = ALWAYS,
-    private val annotationIntrospector: JaxbAnnotationIntrospector = SoapJaxbAnnotationIntrospector()
-) : JaxbAnnotationModule(annotationIntrospector) {
+    private val serializationInclusion: Include = ALWAYS
+) : JaxbAnnotationModule() {
 
     override fun setupModule(context: SetupContext) {
         with(context) {
-            insertAnnotationIntrospector(annotationIntrospector)
+            insertAnnotationIntrospector(SoapJaxbAnnotationIntrospector(context.typeFactory))
             addSerializers(SoapEnvelopeSerializers(soapEnvelopeNamespace))
             addDeserializers(SoapEnvelopeDeserializers())
             setNamingStrategy(UPPER_CAMEL_CASE)
