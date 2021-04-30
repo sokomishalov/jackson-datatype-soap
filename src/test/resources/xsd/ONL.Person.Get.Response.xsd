@@ -1,0 +1,455 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            xmlns="http://www.siebel.com/xml/SwiPersonIO"
+            targetNamespace="http://www.siebel.com/xml/SwiPersonIO"
+            elementFormDefault="qualified">
+    <xsd:element name="ListOfSwiPersonIO" type="ListOfSwiPersonIO"/>
+    <xsd:complexType name="ListOfSwiPersonIO">
+        <xsd:sequence>
+            <xsd:element name="Contact" type="Contact" maxOccurs="unbounded"/>
+        </xsd:sequence>
+        <xsd:attribute name="ExternalSystemId" type="string30"/>
+        <xsd:attribute name="ExternalSystemName" type="string100"/>
+        <xsd:attribute name="EnterpriseServerName" type="string15"/>
+        <xsd:attribute name="Locale" type="string15"/>
+        <xsd:attribute name="Language" type="string15"/>
+    </xsd:complexType>
+    <xsd:complexType name="Contact">
+        <xsd:sequence>
+            <xsd:element name="Id" type="string100" minOccurs="0" nillable="true"/>
+            <xsd:element name="PartyUId" type="string100"/>
+            <xsd:element name="Status" type="string30"/>
+            <xsd:element name="LastName" type="string50"/>
+            <xsd:element name="FirstName" type="string50"/>
+            <xsd:element name="MiddleName" type="string50" nillable="true"/>
+            <xsd:element name="LFMGenitive" type="string150" nillable="true"/>
+            <xsd:element name="LFMDative" type="string150" nillable="true"/>
+            <xsd:element name="LFMAblative" type="string150" nillable="true"/>
+            <xsd:element name="LastNameLat" type="string50" nillable="true"/>
+            <xsd:element name="FirstNameLat" type="string50" nillable="true"/>
+            <xsd:element name="PreviousLastName" type="string50" nillable="true"/>
+            <xsd:element name="PreviousFirstName" type="string50" nillable="true"/>
+            <xsd:element name="PreviousMiddleName" type="string50" nillable="true"/>
+            <xsd:element name="ChangeDateFullName" type="date" nillable="true"/>
+            <xsd:element name="MF" type="string30" nillable="true"/>
+            <xsd:element name="Terminated" type="string30" nillable="true"/>
+            <xsd:element name="StPubOfficial" type="string30" nillable="true"/>
+            <xsd:element name="BirthDate" type="date" nillable="true"/>
+            <xsd:element name="BirthPlace" type="string200" nillable="true"/>
+            <xsd:element name="Citizenship" type="string30" nillable="true"/>
+            <xsd:element name="RezidentFlag" type="booleanYN" nillable="true"/>
+            <xsd:element name="TaxRezident" type="booleanYN" nillable="true"/>
+            <xsd:element name="INN" type="string20" nillable="true"/>
+            <xsd:element name="TaxPayerCodeNonResident" type="string20" nillable="true"/>
+            <xsd:element name="MaritalStatus" type="string30" nillable="true"/>
+            <xsd:element name="LeaveBankDate" type="date" nillable="true"/>
+            <xsd:element name="EmployerFlag" type="string30" nillable="true"/>
+            <xsd:element name="EmployerCode" type="string15" nillable="true"/>
+            <xsd:element name="DeathDate" type="date" nillable="true"/>
+            <xsd:element name="UnderInvestigationFlag" type="booleanYN" nillable="true"/>
+            <xsd:element name="CriminalRecordFlag" type="booleanYN" nillable="true"/>
+            <xsd:element name="Type" type="string30" nillable="true"/>
+            <xsd:element name="DateSetType" type="datetime" nillable="true"/>
+            <xsd:element name="HouseholderNumber" type="xsd:unsignedLong" nillable="true"/>
+            <xsd:element name="ChildrenNumber" type="xsd:unsignedLong" nillable="true"/>
+            <xsd:element name="DependentNumber" type="xsd:unsignedLong" nillable="true"/>
+            <xsd:element name="ConsentProvisionCreditor" type="booleanYN" nillable="true"/>
+            <xsd:element name="ConsentProvisionCreditorTr" type="booleanYN" nillable="true"/>
+            <xsd:element name="NumberOfAccounts" type="string29" nillable="true"/>
+            <xsd:element name="LoginExternalSystem" type="string50"/>
+            <xsd:element name="NameExternalSystem" type="string30"/>
+            <xsd:element name="CreatedExternalSystem" type="datetime" nillable="true"/>
+            <xsd:element name="UpdateDate" type="datetime"/>
+            <xsd:element name="LastNameQC" type="string50" nillable="true"/>
+            <xsd:element name="FirstNameQC" type="string50" nillable="true"/>
+            <xsd:element name="MiddleNameQC" type="string50" nillable="true"/>
+            <xsd:element name="FullNameQC" type="string50" nillable="true"/>
+            <xsd:element name="PreviousLastNameQC" type="string50" nillable="true"/>
+            <xsd:element name="PreviousFirstNameQC" type="string50" nillable="true"/>
+            <xsd:element name="PreviousMiddleNameQC" type="string50" nillable="true"/>
+            <xsd:element name="PreviousFullNameQC" type="string50" nillable="true"/>
+            <xsd:element name="PreviousLastNameStatus" type="string50" nillable="true"/>
+            <xsd:element name="MFQC" type="string50" nillable="true"/>
+            <xsd:element name="BirthDateStatus" type="string50" nillable="true"/>
+            <xsd:element name="INNStatus" type="string50" nillable="true"/>
+            <xsd:element name="DeathDateStatus" type="string50" nillable="true"/>
+            <xsd:element name="FullNameStatus" type="string50" nillable="true"/>
+            <xsd:element name="NumTaxInspection" type="string12" nillable="true"/>
+            <xsd:element name="ListOfContact_Education" type="ListOfContact_Education"/>
+            <xsd:element name="ListOfContact_INSPersonalAddress" type="ListOfContact_INSPersonalAddress"/>
+            <xsd:element name="ListOfContact_AlternatePhone" type="ListOfContact_AlternatePhone"/>
+            <xsd:element name="ListOfContact_CommunicationAddress" type="ListOfContact_CommunicationAddress"/>
+            <xsd:element name="ListOfContact_PUBContactIdentity" type="ListOfContact_PUBContactIdentity"/>
+            <xsd:element name="ListOfContact_JobHistory" type="ListOfContact_JobHistory"/>
+            <xsd:element name="ListOfConact_Segment" type="ListOfConact_Segment"/>
+            <xsd:element name="ListOfCIFContactReference" type="ListOfCIFContactReference"/>
+            <xsd:element name="ListOfContact_Relatives" type="ListOfContact_Relatives"/>
+            <xsd:element name="ListOfContact_Relationship" type="ListOfContact_Relationship"/>
+        </xsd:sequence>
+        <xsd:attribute name="operation" type="string30"/>
+    </xsd:complexType>
+    <xsd:complexType name="ListOfContact_Education">
+        <xsd:sequence>
+            <xsd:element name="Contact_Education" type="Contact_Education" minOccurs="0" maxOccurs="unbounded"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="Contact_Education">
+        <xsd:sequence>
+            <xsd:element name="EducationLevel" type="string30"/>
+            <xsd:element name="EducationType" type="string30"/>
+            <xsd:element name="EducationName" type="string100"/>
+            <xsd:element name="Speciality" type="string100" nillable="true"/>
+            <xsd:element name="ScientificDegree" type="string30" nillable="true"/>
+            <xsd:element name="LoginExternalSystem" type="string50"/>
+            <xsd:element name="NameExternalSystem" type="string30"/>
+            <xsd:element name="UpdateDate" type="datetime"/>
+            <xsd:element name="StartDate" type="date" nillable="true"/>
+            <xsd:element name="EndDate" type="date" nillable="true"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="ListOfContact_INSPersonalAddress">
+        <xsd:sequence>
+            <xsd:element name="Contact_INSPersonalAddress" type="Contact_INSPersonalAddress" minOccurs="0"
+                         maxOccurs="unbounded"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="Contact_INSPersonalAddress">
+        <xsd:sequence>
+            <xsd:element name="INSPersonalAddressType" type="string30"/>
+            <xsd:element name="INSPersonalAddressName" type="string1000"/>
+            <xsd:element name="INSPersonalNotFormAddrName" type="string1000" nillable="true"/>
+            <xsd:element name="INSPersonalCountry" type="string30" nillable="true"/>
+            <xsd:element name="INSPersonalPostalCode" type="string30" nillable="true"/>
+            <xsd:element name="INSPersonalRegion" type="string10" nillable="true"/>
+            <xsd:element name="INSPersonalPrefStateType" type="string30" nillable="true"/>
+            <xsd:element name="INSPersonalPrefState" type="string50" nillable="true"/>
+            <xsd:element name="INSPersonalPrefDistrictType" type="string30" nillable="true"/>
+            <xsd:element name="INSPersonalPrefDistrict" type="string100" nillable="true"/>
+            <xsd:element name="INSPersonalPrefCityType" type="string30" nillable="true"/>
+            <xsd:element name="INSPersonalPrefCity" type="string100" nillable="true"/>
+            <xsd:element name="INSPersonalPrefSettlementType" type="string30" nillable="true"/>
+            <xsd:element name="INSPersonalPrefSettlement" type="string100" nillable="true"/>
+            <xsd:element name="INSPersonalPrefStreetType" type="string30" nillable="true"/>
+            <xsd:element name="INSPersonalPrefStreet" type="string100" nillable="true"/>
+            <xsd:element name="INSPersonalHouse" type="string10" nillable="true"/>
+            <xsd:element name="INSPersonalHousing" type="string10" nillable="true"/>
+            <xsd:element name="INSPersonalBuilding" type="string10" nillable="true"/>
+            <xsd:element name="INSPersonalApartmentNumber" type="string10" nillable="true"/>
+            <xsd:element name="INSPersonalKLADRCode" type="string19" nillable="true"/>
+            <xsd:element name="INSPersonalOKATOCode" type="string20" nillable="true"/>
+            <xsd:element name="INSPersonalStartDate" type="date" nillable="true"/>
+            <xsd:element name="INSPersonalEndDate" type="date" nillable="true"/>
+            <xsd:element name="LoginExternalSystem" type="string50"/>
+            <xsd:element name="NameExternalSystem" type="string30"/>
+            <xsd:element name="UpdateDate" type="datetime"/>
+            <xsd:element name="TrustFlag" type="booleanYN"/>
+            <xsd:element name="INSPersonalComplCode" type="string50" nillable="true"/>
+            <xsd:element name="INSPersonalCheckCode" type="string50" nillable="true"/>
+            <xsd:element name="INSPersonalQCPostalCode" type="string50" nillable="true"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="ListOfContact_AlternatePhone">
+        <xsd:sequence>
+            <xsd:element name="Contact_AlternatePhone" type="Contact_AlternatePhone" minOccurs="0"
+                         maxOccurs="unbounded"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="Contact_AlternatePhone">
+        <xsd:sequence>
+            <xsd:element name="PhoneType" type="string30"/>
+            <xsd:element name="OperatorName" type="string50" nillable="true"/>
+            <xsd:element name="NotFormFullPhone" type="string50"/>
+            <xsd:element name="FullPhone" type="string50"/>
+            <xsd:element name="PhoneRegion" type="string50" nillable="true"/>
+            <xsd:element name="StartDate" type="date" nillable="true"/>
+            <xsd:element name="EndDate" type="date" nillable="true"/>
+            <xsd:element name="LoginExternalSystem" type="string50"/>
+            <xsd:element name="NameExternalSystem" type="string30"/>
+            <xsd:element name="UpdateDate" type="datetime"/>
+            <xsd:element name="TrustFlag" type="booleanYN"/>
+            <xsd:element name="PhoneQC" type="string50" nillable="true"/>
+            <xsd:element name="PhoneStatus" type="string50" nillable="true"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="ListOfContact_CommunicationAddress">
+        <xsd:sequence>
+            <xsd:element name="Contact_CommunicationAddress" type="Contact_CommunicationAddress" minOccurs="0"
+                         maxOccurs="unbounded"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="Contact_CommunicationAddress">
+        <xsd:sequence>
+            <xsd:element name="EmailType" type="string30"/>
+            <xsd:element name="Email" type="string50"/>
+            <xsd:element name="StartDate" type="date" nillable="true"/>
+            <xsd:element name="EndDate" type="date" nillable="true"/>
+            <xsd:element name="LoginExternalSystem" type="string50"/>
+            <xsd:element name="NameExternalSystem" type="string30"/>
+            <xsd:element name="UpdateDate" type="datetime"/>
+            <xsd:element name="TrustFlag" type="booleanYN"/>
+            <xsd:element name="EmailQC" type="string50" nillable="true"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="ListOfContact_PUBContactIdentity">
+        <xsd:sequence>
+            <xsd:element name="Contact_PUBContactIdentity" type="Contact_PUBContactIdentity" minOccurs="0"
+                         maxOccurs="unbounded"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="Contact_PUBContactIdentity">
+        <xsd:sequence>
+            <xsd:element name="Type" type="string30"/>
+            <xsd:element name="Series" type="string10" nillable="true"/>
+            <xsd:element name="Number" type="string30"/>
+            <xsd:element name="CountryIssue" type="string30" nillable="true"/>
+            <xsd:element name="Issued" type="string500" nillable="true"/>
+            <xsd:element name="IssueDate" type="date" nillable="true"/>
+            <xsd:element name="ExpirationDate" type="date" nillable="true"/>
+            <xsd:element name="DivisionCode" type="string30" nillable="true"/>
+            <xsd:element name="Comment" type="string250" nillable="true"/>
+            <xsd:element name="LoginExternalSystem" type="string50"/>
+            <xsd:element name="NameExternalSystem" type="string30"/>
+            <xsd:element name="UpdateDate" type="datetime"/>
+            <xsd:element name="StartDate" type="date" nillable="true"/>
+            <xsd:element name="EndDate" type="date" nillable="true"/>
+            <xsd:element name="TrustFlag" type="booleanYN"/>
+            <xsd:element name="SerialStatus" type="string50" nillable="true"/>
+            <xsd:element name="NumberStatus" type="string50" nillable="true"/>
+            <xsd:element name="IssueDateStatus" type="string50" nillable="true"/>
+            <xsd:element name="ExpirationDateStatus" type="string50" nillable="true"/>
+            <xsd:element name="DivisionCodeQC" type="string50" nillable="true"/>
+            <xsd:element name="StDtStayRF" type="string30" nillable="true"/>
+            <xsd:element name="EdDtStayRF" type="string30" nillable="true"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="ListOfContact_JobHistory">
+        <xsd:sequence>
+            <xsd:element name="JobHistory" type="JobHistory" minOccurs="0" maxOccurs="unbounded"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="JobHistory">
+        <xsd:sequence>
+            <xsd:element name="Organization" type="string100"/>
+            <xsd:element name="OrganizationLocation" type="string1000" nillable="true"/>
+            <xsd:element name="Position" type="string30" nillable="true"/>
+            <xsd:element name="EmploymentType" type="string30"/>
+            <xsd:element name="ContractType" type="string30" nillable="true"/>
+            <xsd:element name="ContractStartDate" type="date" nillable="true"/>
+            <xsd:element name="ContractEndDate" type="date" nillable="true"/>
+            <xsd:element name="INNKIO" type="string20" nillable="true"/>
+            <xsd:element name="LoginExternalSystem" type="string50"/>
+            <xsd:element name="NameExternalSystem" type="string30"/>
+            <xsd:element name="UpdateDate" type="datetime"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="ListOfConact_Segment">
+        <xsd:sequence>
+            <xsd:element name="Contact_Segment" type="Contact_Segment" minOccurs="0" maxOccurs="unbounded"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="Contact_Segment">
+        <xsd:sequence>
+            <xsd:element name="Type" type="string30"/>
+            <xsd:element name="Status" type="string30" nillable="true"/>
+            <xsd:element name="Value" type="string30"/>
+            <xsd:element name="StartDate" type="date" nillable="true"/>
+            <xsd:element name="EndDate" type="date" nillable="true"/>
+            <xsd:element name="LoginExternalSystem" type="string50"/>
+            <xsd:element name="NameExternalSystem" type="string30"/>
+            <xsd:element name="UpdateDate" type="datetime"/>
+            <xsd:element name="Criterion" type="string500" nillable="true"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="ListOfCIFContactReference">
+        <xsd:sequence>
+            <xsd:element name="CIFContactReference" type="CIFContactReference" minOccurs="0" maxOccurs="unbounded"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="CIFContactReference">
+        <xsd:sequence>
+            <xsd:element name="SystemNumber" type="string30"/>
+            <xsd:element name="SystemName" type="string100"/>
+            <xsd:element name="ExternalId" type="string100"/>
+            <xsd:element name="EndDate" type="datetime" nillable="true"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="ListOfContact_Relatives">
+        <xsd:sequence>
+            <xsd:element name="Contact_Relatives" type="Contact_Relatives" minOccurs="0" maxOccurs="unbounded"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="Contact_Relatives">
+        <xsd:sequence>
+            <xsd:element name="LFM" type="string150"/>
+            <xsd:element name="BirthDate" type="date" nillable="true"/>
+            <xsd:element name="Dependent" type="booleanYN" nillable="true"/>
+            <xsd:element name="DegreeOfRelationship" type="string30" nillable="true"/>
+            <xsd:element name="LoginExternalSystem" type="string50"/>
+            <xsd:element name="NameExternalSystem" type="string30"/>
+            <xsd:element name="UpdateDate" type="datetime"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="ListOfContact_Relationship">
+        <xsd:sequence>
+            <xsd:element name="Contact_Relationship" type="Contact_Relationship" minOccurs="0" maxOccurs="unbounded"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="Contact_Relationship">
+        <xsd:sequence>
+            <xsd:element name="PartyUId" type="string15"/>
+            <xsd:element name="RelatedPartyUId" type="string15"/>
+            <xsd:element name="RelatedPartyType" type="string30" nillable="true"/>
+            <xsd:element name="Role" type="string30"/>
+            <xsd:element name="StartDate" type="date" nillable="true"/>
+            <xsd:element name="EndDate" type="date" nillable="true"/>
+            <xsd:element name="RelatedAttrib" type="string100" nillable="true"/>
+            <xsd:element name="RelatedAttrib2" type="string100" nillable="true"/>
+            <xsd:element name="Portion" type="xsd:unsignedLong" nillable="true"/>
+            <xsd:element name="LoginExternalSystem" type="string50"/>
+            <xsd:element name="NameExternalSystem" type="string30"/>
+            <xsd:element name="UpdateDate" type="datetime"/>
+            <xsd:element name="ListOfCIFContactRefRelated" type="ListOfCIFContactRefRelated"/>
+            <xsd:element name="ListOfCIFAccountRefRelated" type="ListOfCIFAccountRefRelated"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="ListOfCIFContactRefRelated">
+        <xsd:sequence>
+            <xsd:element name="CIFContactRefRelated" type="CIFContactRefRelated" minOccurs="0" maxOccurs="unbounded"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="CIFContactRefRelated">
+        <xsd:sequence>
+            <xsd:element name="SystemNumber" type="string30"/>
+            <xsd:element name="ExternalId" type="string100"/>
+            <xsd:element name="EndDate" type="datetime" nillable="true"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="ListOfCIFAccountRefRelated">
+        <xsd:sequence>
+            <xsd:element name="CIFAccountRefRelated" type="CIFAccountRefRelated" minOccurs="0" maxOccurs="unbounded"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="CIFAccountRefRelated">
+        <xsd:sequence>
+            <xsd:element name="SystemNumber" type="string30"/>
+            <xsd:element name="ExternalId" type="string100"/>
+            <xsd:element name="EndDate" type="datetime" nillable="true"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:simpleType name="string500">
+        <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="500"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="string7">
+        <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="7"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="string50">
+        <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="50"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="string24">
+        <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="24"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="string255">
+        <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="255"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="string250">
+        <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="250"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="string10">
+        <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="10"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="string19">
+        <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="19"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="string12">
+        <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="12"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="string15">
+        <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="15"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="string75">
+        <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="75"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="string30">
+        <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="30"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="string200">
+        <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="200"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="string1">
+        <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="1"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="string100">
+        <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="100"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="string20">
+        <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="20"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="string150">
+        <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="150"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="string1000">
+        <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="1000"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="string29">
+        <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="29"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="int12">
+        <xsd:restriction base="xsd:integer"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="date">
+        <xsd:restriction base="xsd:string">
+            <xsd:pattern
+                    value="([0][1-9]|[1][0-2])/([0][1-9]|[1][0-9]|[2][0-9]|[3][0-1])/([1][9][0-9][0-9]|[2][0][0-9][0-9])"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="datetime">
+        <xsd:restriction base="xsd:string">
+            <xsd:pattern
+                    value="([0][1-9]|[1][0-2])/([0][1-9]|[1][0-9]|[2][0-9]|[3][0-1])/([1][9][0-9][0-9]|[2][0][0-9][0-9]) (0[0-9]|1[0-9]|2[0-3]):([0-5][0-9]):([0-5][0-9])"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="booleanYN">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="Y"/>
+            <xsd:enumeration value="N"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+</xsd:schema>

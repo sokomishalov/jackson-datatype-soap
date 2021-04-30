@@ -1,0 +1,75 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+             xmlns:getrequest="http://www.siebel.com/xml/SwiPersonIOGetRequest"
+             xmlns:getresponse="http://www.siebel.com/xml/SwiPersonIO"
+             xmlns:soapFault="http://www.siebel.com/ws/fault"
+             xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+             xmlns:tns="http://xmlns.oracle.com/apps/mdm/customer"
+             xmlns="http://schemas.xmlsoap.org/wsdl/"
+             targetNamespace="http://xmlns.oracle.com/apps/mdm/customer">
+
+    <types>
+        <xsd:schema elementFormDefault="qualified"
+                    targetNamespace="http://xmlns.oracle.com/apps/mdm/customer">
+            <xsd:import namespace="http://www.siebel.com/xml/SwiPersonIOGetRequest"
+                        schemaLocation="../xsd/ONL.Person.Get.Request.xsd"/>
+            <xsd:import namespace="http://www.siebel.com/xml/SwiPersonIO"
+                        schemaLocation="../xsd/ONL.Person.Get.Response.xsd"/>
+            <xsd:import namespace="http://www.siebel.com/ws/fault"
+                        schemaLocation="../xsd/SOAP.FAULT.xsd"/>
+
+            <xsd:element name="getPerson_Input">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="ListOfSwiPersonIO" type="getrequest:ListOfSwiPersonIO"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="getPerson_Output">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="ListOfSwiPersonIO" type="getresponse:ListOfSwiPersonIO"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="Fault" type="soapFault:Fault"/>
+        </xsd:schema>
+    </types>
+    <message name="getPerson_Input">
+        <part name="getPerson_Input" element="tns:getPerson_Input"/>
+    </message>
+    <message name="getPerson_Output">
+        <part name="getPerson_Output" element="tns:getPerson_Output"/>
+    </message>
+    <message name="soapFault">
+        <part name="soapFault" element="tns:Fault"/>
+    </message>
+    <portType name="PersonService">
+        <operation name="getPerson">
+            <input message="tns:getPerson_Input"/>
+            <output message="tns:getPerson_Output"/>
+            <fault name="SoapFault" message="tns:soapFault"/>
+        </operation>
+    </portType>
+    <binding name="PersonService" type="tns:PersonService">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <operation name="getPerson">
+            <soap:operation soapAction="document/http://xmlns.oracle.com/apps/mdm/customer:getPerson"/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+            <fault name="SoapFault">
+                <soap:fault name="soapFault" use="literal"/>
+            </fault>
+        </operation>
+    </binding>
+    <service name="PersonService">
+        <port name="PersonService" binding="tns:PersonService">
+            <soap:address
+                    location="http://k3mdmapp.vtb24.ru:8443/eai_anon_rus/start.swe?SWEExtSource=WebService&amp;SWEExtCmd=Execute&amp;WSSOAP=1"/>
+        </port>
+    </service>
+</definitions>

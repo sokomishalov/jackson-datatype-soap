@@ -1,0 +1,577 @@
+<SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/">
+    <SOAP-ENV:Header xmlns:wsa="http://www.w3.org/2005/08/addressing">
+        <wsa:Action>GetPerson</wsa:Action>
+        <wsa:MessageID>uuid:6B29FC40-CA47-1067-B31D-00DD010662DA</wsa:MessageID>
+        <wsa:From>http://www.w3.org/2005/08/addressing/anonymous</wsa:From>
+        <wsa:To>http://www.w3.org/2005/08/addressing/anonymous</wsa:To>
+        <wsa:ReplyTo>
+            <wsa:Address>http://www.w3.org/2005/08/addressing/anonymous</wsa:Address>
+        </wsa:ReplyTo>
+        <wsa:FaultTo>
+            <wsa:Address>http://www.w3.org/2005/08/addressing/anonymous</wsa:Address>
+        </wsa:FaultTo>
+    </SOAP-ENV:Header>
+    <SOAP-ENV:Body>
+        <ns:getPerson_Output xmlns:ns="http://xmlns.oracle.com/apps/mdm/customer">
+            <ListOfSwiPersonIO xmlns="http://www.siebel.com/xml/SwiPersonIO">
+                <Contact>
+                    <Id/>
+                    <BirthDate>10/10/1981</BirthDate>
+                    <FirstName>Петр</FirstName>
+                    <LastName>Петров</LastName>
+                    <MF>1</MF>
+                    <Terminated/>
+                    <LFMAblative>Румянцевым Романом Генадьевичем</LFMAblative>
+                    <LFMDative>Румянцеву Роману Генадьевичу</LFMDative>
+                    <LFMGenitive>Румянцева Романа Генадьевича</LFMGenitive>
+                    <MaritalStatus>1</MaritalStatus>
+                    <MiddleName>Петрович</MiddleName>
+                    <PartyUId>1523008449</PartyUId>
+                    <UpdateDate>07/16/2020 16:08:59</UpdateDate>
+                    <Status>1</Status>
+                    <LastNameLat>RUMYANTSEV</LastNameLat>
+                    <FirstNameLat>ROMAN</FirstNameLat>
+                    <PreviousLastName/>
+                    <PreviousFirstName/>
+                    <PreviousMiddleName/>
+                    <ChangeDateFullName/>
+                    <BirthPlace>Москва</BirthPlace>
+                    <Citizenship>643</Citizenship>
+                    <RezidentFlag>Y</RezidentFlag>
+                    <TaxRezident>N</TaxRezident>
+                    <INN>506070809022</INN>
+                    <TaxPayerCodeNonResident/>
+                    <LeaveBankDate/>
+                    <EmployerFlag/>
+                    <EmployerCode/>
+                    <UnderInvestigationFlag/>
+                    <StPubOfficial>0</StPubOfficial>
+                    <CriminalRecordFlag/>
+                    <Type>1</Type>
+                    <DateSetType/>
+                    <HouseholderNumber/>
+                    <ChildrenNumber/>
+                    <DependentNumber/>
+                    <ConsentProvisionCreditor/>
+                    <ConsentProvisionCreditorTr/>
+                    <NumberOfAccounts/>
+                    <LoginExternalSystem>0-1</LoginExternalSystem>
+                    <NameExternalSystem>MDM_CH</NameExternalSystem>
+                    <CreatedExternalSystem>10/10/2017 17:08:57</CreatedExternalSystem>
+                    <DeathDate/>
+                    <PreviousMiddleNameQC>Empty</PreviousMiddleNameQC>
+                    <PreviousLastNameQC>Empty</PreviousLastNameQC>
+                    <PreviousFullNameQC>Ok not changed</PreviousFullNameQC>
+                    <PreviousLastNameStatus>EDITED</PreviousLastNameStatus>
+                    <PreviousFirstNameQC>Empty</PreviousFirstNameQC>
+                    <MiddleNameQC>Ok not changed</MiddleNameQC>
+                    <MFQC>Ok not changed</MFQC>
+                    <LastNameQC>Ok not changed</LastNameQC>
+                    <FullNameQC>Ok not changed</FullNameQC>
+                    <INNStatus>NOT_SURE</INNStatus>
+                    <FirstNameQC>Ok not changed</FirstNameQC>
+                    <DeathDateStatus>EDITED</DeathDateStatus>
+                    <BirthDateStatus>EDITED</BirthDateStatus>
+                    <FullNameStatus>EDITED</FullNameStatus>
+                    <NumTaxInspection/>
+                    <ListOfContact_CommunicationAddress>
+                        <Contact_CommunicationAddress>
+                            <TrustFlag>Y</TrustFlag>
+                            <Email>PymRnceB@mail.ru</Email>
+                            <EmailType>11</EmailType>
+                            <StartDate/>
+                            <EndDate/>
+                            <LoginExternalSystem>0-1</LoginExternalSystem>
+                            <NameExternalSystem>SBL_FR</NameExternalSystem>
+                            <UpdateDate>07/16/2020 16:08:59</UpdateDate>
+                            <EmailQC>GOOD</EmailQC>
+                        </Contact_CommunicationAddress>
+                    </ListOfContact_CommunicationAddress>
+                    <ListOfContact_AlternatePhone>
+                        <Contact_AlternatePhone>
+                            <NotFormFullPhone>89615639011</NotFormFullPhone>
+                            <TrustFlag>Y</TrustFlag>
+                            <FullPhone>0005310005</FullPhone>
+                            <OperatorName>ПАО "Вымпел-Коммуникации"</OperatorName>
+                            <PhoneType>7</PhoneType>
+                            <StartDate>02/02/2019</StartDate>
+                            <EndDate>07/16/2020</EndDate>
+                            <PhoneRegion>Кировская область</PhoneRegion>
+                            <LoginExternalSystem>USER01</LoginExternalSystem>
+                            <NameExternalSystem>MDM_CH</NameExternalSystem>
+                            <UpdateDate>02/07/2020 16:00:32</UpdateDate>
+                            <PhoneQC>GOOD_REGION_CONFLICT</PhoneQC>
+                            <PhoneStatus>EDITED</PhoneStatus>
+                        </Contact_AlternatePhone>
+                        <Contact_AlternatePhone>
+                            <NotFormFullPhone>0005310005</NotFormFullPhone>
+                            <TrustFlag>Y</TrustFlag>
+                            <FullPhone>495 5310005</FullPhone>
+                            <OperatorName>ПАО "МГТС"</OperatorName>
+                            <PhoneType>7</PhoneType>
+                            <StartDate/>
+                            <EndDate/>
+                            <PhoneRegion>Москва</PhoneRegion>
+                            <LoginExternalSystem>0-1</LoginExternalSystem>
+                            <NameExternalSystem>SBL_FR</NameExternalSystem>
+                            <UpdateDate>07/16/2020 16:08:59</UpdateDate>
+                            <PhoneQC>CODE_AMBI</PhoneQC>
+                            <PhoneStatus>EDITED</PhoneStatus>
+                        </Contact_AlternatePhone>
+                        <Contact_AlternatePhone>
+                            <NotFormFullPhone>89648192411</NotFormFullPhone>
+                            <TrustFlag>Y</TrustFlag>
+                            <FullPhone>89648192411</FullPhone>
+                            <OperatorName/>
+                            <PhoneType>4</PhoneType>
+                            <StartDate>02/02/2019</StartDate>
+                            <EndDate>07/16/2020</EndDate>
+                            <PhoneRegion/>
+                            <LoginExternalSystem>1-USU6T0J</LoginExternalSystem>
+                            <NameExternalSystem>SBL_FR</NameExternalSystem>
+                            <UpdateDate>02/02/2019 11:52:23</UpdateDate>
+                            <PhoneQC>UNDEF</PhoneQC>
+                            <PhoneStatus>NOT_SURE</PhoneStatus>
+                        </Contact_AlternatePhone>
+                        <Contact_AlternatePhone>
+                            <NotFormFullPhone>89615639011</NotFormFullPhone>
+                            <TrustFlag>Y</TrustFlag>
+                            <FullPhone>961 5639011</FullPhone>
+                            <OperatorName>ПАО "Вымпел-Коммуникации"</OperatorName>
+                            <PhoneType>7</PhoneType>
+                            <StartDate/>
+                            <EndDate>07/16/2020</EndDate>
+                            <PhoneRegion>Кировская область</PhoneRegion>
+                            <LoginExternalSystem>USER01</LoginExternalSystem>
+                            <NameExternalSystem>MDM_CH</NameExternalSystem>
+                            <UpdateDate>07/16/2020 16:09:54</UpdateDate>
+                            <PhoneQC>GOOD_REGION_CONFLICT</PhoneQC>
+                            <PhoneStatus>EDITED</PhoneStatus>
+                        </Contact_AlternatePhone>
+                        <Contact_AlternatePhone>
+                            <NotFormFullPhone>89648192411</NotFormFullPhone>
+                            <TrustFlag>Y</TrustFlag>
+                            <FullPhone>964 8192411</FullPhone>
+                            <OperatorName>ПАО "Мобильные ТелеСистемы"</OperatorName>
+                            <PhoneType>4</PhoneType>
+                            <StartDate>12/21/2018</StartDate>
+                            <EndDate>07/16/2020</EndDate>
+                            <PhoneRegion>Иркутская область</PhoneRegion>
+                            <LoginExternalSystem>0-1</LoginExternalSystem>
+                            <NameExternalSystem>SBL_FR</NameExternalSystem>
+                            <UpdateDate>12/21/2018 12:02:20</UpdateDate>
+                            <PhoneQC>GOOD_REGION_CONFLICT</PhoneQC>
+                            <PhoneStatus>EDITED</PhoneStatus>
+                        </Contact_AlternatePhone>
+                    </ListOfContact_AlternatePhone>
+                    <ListOfContact_INSPersonalAddress>
+                        <Contact_INSPersonalAddress>
+                            <TrustFlag>Y</TrustFlag>
+                            <INSPersonalAddressType>3</INSPersonalAddressType>
+                            <INSPersonalPrefCity>Москва</INSPersonalPrefCity>
+                            <INSPersonalCountry>643</INSPersonalCountry>
+                            <INSPersonalPrefDistrict/>
+                            <INSPersonalPrefStreet>Центральный Хорошевского Серебряного Бор</INSPersonalPrefStreet>
+                            <INSPersonalHouse>20</INSPersonalHouse>
+                            <INSPersonalAddressName>Москва, Центральный Проезд Хорошёвского Серебряного Бора, дом 20
+                            </INSPersonalAddressName>
+                            <INSPersonalNotFormAddrName>123103 Россия г Москва проезд Центральный Хорошевского
+                                Серебряного Бор дом 20
+                            </INSPersonalNotFormAddrName>
+                            <INSPersonalPostalCode>123103</INSPersonalPostalCode>
+                            <INSPersonalRegion>77</INSPersonalRegion>
+                            <INSPersonalPrefStateType>г</INSPersonalPrefStateType>
+                            <INSPersonalPrefState>Москва</INSPersonalPrefState>
+                            <INSPersonalPrefDistrictType/>
+                            <INSPersonalPrefCityType>г</INSPersonalPrefCityType>
+                            <INSPersonalPrefSettlementType/>
+                            <INSPersonalPrefSettlement/>
+                            <INSPersonalPrefStreetType>проезд</INSPersonalPrefStreetType>
+                            <INSPersonalHousing/>
+                            <INSPersonalBuilding/>
+                            <INSPersonalApartmentNumber/>
+                            <INSPersonalKLADRCode>77000000000422900</INSPersonalKLADRCode>
+                            <INSPersonalOKATOCode>45283582000</INSPersonalOKATOCode>
+                            <INSPersonalStartDate/>
+                            <LoginExternalSystem>0-1</LoginExternalSystem>
+                            <INSPersonalEndDate/>
+                            <NameExternalSystem>SBL_FR</NameExternalSystem>
+                            <UpdateDate>07/16/2020 16:08:59</UpdateDate>
+                            <INSPersonalComplCode>UNDEF_05</INSPersonalComplCode>
+                            <INSPersonalCheckCode>VALIDATED</INSPersonalCheckCode>
+                            <INSPersonalQCPostalCode>KLADR_NEAREST_HOUSE</INSPersonalQCPostalCode>
+                        </Contact_INSPersonalAddress>
+                        <Contact_INSPersonalAddress>
+                            <TrustFlag>Y</TrustFlag>
+                            <INSPersonalAddressType>1</INSPersonalAddressType>
+                            <INSPersonalPrefCity>Москва</INSPersonalPrefCity>
+                            <INSPersonalCountry>643</INSPersonalCountry>
+                            <INSPersonalPrefDistrict/>
+                            <INSPersonalPrefStreet>Центральный Хорошевского Серебряного Бор</INSPersonalPrefStreet>
+                            <INSPersonalHouse>20</INSPersonalHouse>
+                            <INSPersonalAddressName>Москва, Центральный Проезд Хорошёвского Серебряного Бора, дом 20
+                            </INSPersonalAddressName>
+                            <INSPersonalNotFormAddrName>123103 Россия г Москва проезд Центральный Хорошевского
+                                Серебряного Бор дом 20
+                            </INSPersonalNotFormAddrName>
+                            <INSPersonalPostalCode>123103</INSPersonalPostalCode>
+                            <INSPersonalRegion>77</INSPersonalRegion>
+                            <INSPersonalPrefStateType>г</INSPersonalPrefStateType>
+                            <INSPersonalPrefState>Москва</INSPersonalPrefState>
+                            <INSPersonalPrefDistrictType/>
+                            <INSPersonalPrefCityType>г</INSPersonalPrefCityType>
+                            <INSPersonalPrefSettlementType/>
+                            <INSPersonalPrefSettlement/>
+                            <INSPersonalPrefStreetType>проезд</INSPersonalPrefStreetType>
+                            <INSPersonalHousing/>
+                            <INSPersonalBuilding/>
+                            <INSPersonalApartmentNumber/>
+                            <INSPersonalKLADRCode>77000000000422900</INSPersonalKLADRCode>
+                            <INSPersonalOKATOCode>45283582000</INSPersonalOKATOCode>
+                            <INSPersonalStartDate/>
+                            <LoginExternalSystem>0-1</LoginExternalSystem>
+                            <INSPersonalEndDate/>
+                            <NameExternalSystem>SBL_FR</NameExternalSystem>
+                            <UpdateDate>07/16/2020 16:08:59</UpdateDate>
+                            <INSPersonalComplCode>UNDEF_05</INSPersonalComplCode>
+                            <INSPersonalCheckCode>VALIDATED</INSPersonalCheckCode>
+                            <INSPersonalQCPostalCode>KLADR_NEAREST_HOUSE</INSPersonalQCPostalCode>
+                        </Contact_INSPersonalAddress>
+                    </ListOfContact_INSPersonalAddress>
+                    <ListOfContact_Education/>
+                    <ListOfContact_PUBContactIdentity>
+                        <Contact_PUBContactIdentity>
+                            <TrustFlag>Y</TrustFlag>
+                            <Type>300</Type>
+                            <Series/>
+                            <Number>127-398-761 01</Number>
+                            <CountryIssue>643</CountryIssue>
+                            <Issued>ПФР</Issued>
+                            <IssueDate>10/10/2007</IssueDate>
+                            <ExpirationDate/>
+                            <DivisionCode/>
+                            <Comment/>
+                            <LoginExternalSystem>0-1</LoginExternalSystem>
+                            <NameExternalSystem>SBL_FR</NameExternalSystem>
+                            <UpdateDate>07/16/2020 16:08:59</UpdateDate>
+                            <StartDate>07/16/2020</StartDate>
+                            <EndDate/>
+                            <SerialStatus>EDITED</SerialStatus>
+                            <NumberStatus>EDITED</NumberStatus>
+                            <IssueDateStatus>EDITED</IssueDateStatus>
+                            <ExpirationDateStatus>EDITED</ExpirationDateStatus>
+                            <StDtStayRF/>
+                            <EdDtStayRF/>
+                        </Contact_PUBContactIdentity>
+                        <Contact_PUBContactIdentity>
+                            <TrustFlag>Y</TrustFlag>
+                            <Type>21</Type>
+                            <Series>45 10</Series>
+                            <Number>192837</Number>
+                            <CountryIssue>643</CountryIssue>
+                            <Issued>ОВД Москвы</Issued>
+                            <IssueDate>10/10/2007</IssueDate>
+                            <ExpirationDate/>
+                            <DivisionCode>770-110</DivisionCode>
+                            <Comment/>
+                            <LoginExternalSystem>0-1</LoginExternalSystem>
+                            <NameExternalSystem>SBL_FR</NameExternalSystem>
+                            <UpdateDate>07/16/2020 16:08:59</UpdateDate>
+                            <StartDate>07/16/2020</StartDate>
+                            <EndDate/>
+                            <SerialStatus>EDITED</SerialStatus>
+                            <NumberStatus>EDITED</NumberStatus>
+                            <IssueDateStatus>EDITED</IssueDateStatus>
+                            <ExpirationDateStatus>EDITED</ExpirationDateStatus>
+                            <StDtStayRF/>
+                            <EdDtStayRF/>
+                        </Contact_PUBContactIdentity>
+                    </ListOfContact_PUBContactIdentity>
+                    <ListOfContact_JobHistory>
+                        <JobHistory>
+                            <Organization>АО Банк РенКредит</Organization>
+                            <INNKIO>5273189846</INNKIO>
+                            <OrganizationLocation>Минская 3</OrganizationLocation>
+                            <Position>инженер</Position>
+                            <EmploymentType>1</EmploymentType>
+                            <ContractType>2</ContractType>
+                            <ContractStartDate>01/01/2019</ContractStartDate>
+                            <ContractEndDate/>
+                            <NameExternalSystem>MDM_CH</NameExternalSystem>
+                            <UpdateDate>12/05/2019 14:00:40</UpdateDate>
+                            <LoginExternalSystem>USER01</LoginExternalSystem>
+                        </JobHistory>
+                    </ListOfContact_JobHistory>
+                    <ListOfConact_Segment>
+                        <Contact_Segment>
+                            <UpdateDate>07/16/2020 00:00:00</UpdateDate>
+                            <LoginExternalSystem/>
+                            <NameExternalSystem>SBL_FR</NameExternalSystem>
+                            <Criterion/>
+                            <EndDate/>
+                            <Type>3</Type>
+                            <StartDate>07/16/2020</StartDate>
+                            <Status>0</Status>
+                            <Value>Mass</Value>
+                        </Contact_Segment>
+                        <Contact_Segment>
+                            <UpdateDate>02/02/2019 11:52:23</UpdateDate>
+                            <LoginExternalSystem>1-USU6T0J</LoginExternalSystem>
+                            <NameExternalSystem>SBL_FR</NameExternalSystem>
+                            <Criterion/>
+                            <EndDate/>
+                            <Type>46</Type>
+                            <StartDate>01/01/2018</StartDate>
+                            <Status>0</Status>
+                            <Value>Y</Value>
+                        </Contact_Segment>
+                        <Contact_Segment>
+                            <UpdateDate>06/08/2020 00:00:00</UpdateDate>
+                            <LoginExternalSystem/>
+                            <NameExternalSystem>MDM_CH</NameExternalSystem>
+                            <Criterion/>
+                            <EndDate/>
+                            <Type>48</Type>
+                            <StartDate>06/08/2020</StartDate>
+                            <Status>0</Status>
+                            <Value>Y</Value>
+                        </Contact_Segment>
+                        <Contact_Segment>
+                            <UpdateDate>07/16/2020 16:09:54</UpdateDate>
+                            <LoginExternalSystem>0-1</LoginExternalSystem>
+                            <NameExternalSystem>SBL_FR</NameExternalSystem>
+                            <Criterion/>
+                            <EndDate/>
+                            <Type>56</Type>
+                            <StartDate/>
+                            <Status>0</Status>
+                            <Value>N</Value>
+                        </Contact_Segment>
+                    </ListOfConact_Segment>
+                    <ListOfContact_Relationship>
+                        <Contact_Relationship>
+                            <Role>7</Role>
+                            <RelatedAttrib/>
+                            <RelatedAttrib2/>
+                            <Portion/>
+                            <StartDate/>
+                            <EndDate/>
+                            <LoginExternalSystem>USER03</LoginExternalSystem>
+                            <NameExternalSystem>MDM_CH</NameExternalSystem>
+                            <UpdateDate/>
+                            <PartyUId>1523008449</PartyUId>
+                            <RelatedPartyUId>1128648823</RelatedPartyUId>
+                            <RelatedPartyType>Account</RelatedPartyType>
+                            <ListOfCIFContactRefRelated/>
+                            <ListOfCIFAccountRefRelated>
+                                <CIFAccountRefRelated>
+                                    <SystemNumber>SBL_FR</SystemNumber>
+                                    <EndDate/>
+                                    <ExternalId>1-3DAW-5419</ExternalId>
+                                </CIFAccountRefRelated>
+                            </ListOfCIFAccountRefRelated>
+                        </Contact_Relationship>
+                    </ListOfContact_Relationship>
+                    <ListOfCIFContactReference>
+                        <CIFContactReference>
+                            <SystemNumber>SPM</SystemNumber>
+                            <ExternalId>TB9000650</ExternalId>
+                            <EndDate/>
+                        </CIFContactReference>
+                        <CIFContactReference>
+                            <SystemNumber>TG</SystemNumber>
+                            <ExternalId>40633301</ExternalId>
+                            <EndDate/>
+                        </CIFContactReference>
+                        <CIFContactReference>
+                            <SystemNumber>CFT</SystemNumber>
+                            <ExternalId>159817e8-f17d-4022-800f-40157ef0275e</ExternalId>
+                            <EndDate/>
+                        </CIFContactReference>
+                        <CIFContactReference>
+                            <SystemNumber>CFT</SystemNumber>
+                            <ExternalId>29489087684</ExternalId>
+                            <EndDate/>
+                        </CIFContactReference>
+                        <CIFContactReference>
+                            <SystemNumber>CFT</SystemNumber>
+                            <ExternalId>3c67f936-4763-420f-9050-e5403ffe71a9</ExternalId>
+                            <EndDate/>
+                        </CIFContactReference>
+                        <CIFContactReference>
+                            <SystemNumber>CFT</SystemNumber>
+                            <ExternalId>4ff8b130-5637-4ef8-b6c5-704b91e1ffea</ExternalId>
+                            <EndDate/>
+                        </CIFContactReference>
+                        <CIFContactReference>
+                            <SystemNumber>CFT</SystemNumber>
+                            <ExternalId>570eb575-9e13-4a39-b216-fc0a169890d9</ExternalId>
+                            <EndDate/>
+                        </CIFContactReference>
+                        <CIFContactReference>
+                            <SystemNumber>CFT</SystemNumber>
+                            <ExternalId>784c5271-bbd0-4453-9103-0017657bdc40</ExternalId>
+                            <EndDate/>
+                        </CIFContactReference>
+                        <CIFContactReference>
+                            <SystemNumber>CFT</SystemNumber>
+                            <ExternalId>84a9b939-44ce-4df9-82c0-88b50175894f</ExternalId>
+                            <EndDate/>
+                        </CIFContactReference>
+                        <CIFContactReference>
+                            <SystemNumber>CFT</SystemNumber>
+                            <ExternalId>c197c949-8cf6-48af-9151-46d277919c43</ExternalId>
+                            <EndDate/>
+                        </CIFContactReference>
+                        <CIFContactReference>
+                            <SystemNumber>SPECTRUM</SystemNumber>
+                            <ExternalId>682d0666-bb6d-4f29-86ee-74bbc5504450</ExternalId>
+                            <EndDate/>
+                        </CIFContactReference>
+                        <CIFContactReference>
+                            <SystemNumber>EMS</SystemNumber>
+                            <ExternalId>13874b89-b5fe-449d-8773-8806a4248f8b</ExternalId>
+                            <EndDate/>
+                        </CIFContactReference>
+                        <CIFContactReference>
+                            <SystemNumber>EMS</SystemNumber>
+                            <ExternalId>ce6fe508-5227-4886-8fcf-dc0180e26465</ExternalId>
+                            <EndDate/>
+                        </CIFContactReference>
+                        <CIFContactReference>
+                            <SystemNumber>EMS</SystemNumber>
+                            <ExternalId>d8eceee4-97f6-4545-8793-4103e8634895</ExternalId>
+                            <EndDate/>
+                        </CIFContactReference>
+                        <CIFContactReference>
+                            <SystemNumber>DV_EC</SystemNumber>
+                            <ExternalId>460C9980-3923-47B8-B205-D33A351D951F</ExternalId>
+                            <EndDate/>
+                        </CIFContactReference>
+                        <CIFContactReference>
+                            <SystemNumber>SP</SystemNumber>
+                            <ExternalId>32448959-ac23-4de0-bea1-0fdd4667aa30</ExternalId>
+                            <EndDate/>
+                        </CIFContactReference>
+                        <CIFContactReference>
+                            <SystemNumber>00000</SystemNumber>
+                            <ExternalId>7088926</ExternalId>
+                            <EndDate/>
+                        </CIFContactReference>
+                        <CIFContactReference>
+                            <SystemNumber>00002</SystemNumber>
+                            <ExternalId>55b7cab3-c0e1-485c-b56f-8362895d51f9</ExternalId>
+                            <EndDate/>
+                        </CIFContactReference>
+                        <CIFContactReference>
+                            <SystemNumber>00002</SystemNumber>
+                            <ExternalId>b11b7f31-0960-444a-a35d-d39a063859f0</ExternalId>
+                            <EndDate/>
+                        </CIFContactReference>
+                        <CIFContactReference>
+                            <SystemNumber>00051</SystemNumber>
+                            <ExternalId>91bbfac5-d057-474b-9d91-8ee6e9fc6705</ExternalId>
+                            <EndDate/>
+                        </CIFContactReference>
+                        <CIFContactReference>
+                            <SystemNumber>00055</SystemNumber>
+                            <ExternalId>2377adb1-f16a-48e7-ab69-638b051b2053</ExternalId>
+                            <EndDate/>
+                        </CIFContactReference>
+                        <CIFContactReference>
+                            <SystemNumber>00056</SystemNumber>
+                            <ExternalId>95df1533-6e91-48da-b75e-18cf8ea4ec0e</ExternalId>
+                            <EndDate/>
+                        </CIFContactReference>
+                        <CIFContactReference>
+                            <SystemNumber>00072</SystemNumber>
+                            <ExternalId>1e6f3b75-797f-4abe-9baa-850d9b88d4af</ExternalId>
+                            <EndDate/>
+                        </CIFContactReference>
+                        <CIFContactReference>
+                            <SystemNumber>00072</SystemNumber>
+                            <ExternalId>a1a582d6-ab95-4bf4-a898-73bfd557abeb</ExternalId>
+                            <EndDate>06/25/2020 18:42:40</EndDate>
+                        </CIFContactReference>
+                        <CIFContactReference>
+                            <SystemNumber>99995</SystemNumber>
+                            <ExternalId>6300744</ExternalId>
+                            <EndDate/>
+                        </CIFContactReference>
+                        <CIFContactReference>
+                            <SystemNumber>99995</SystemNumber>
+                            <ExternalId>729ee535-722a-446a-9c88-c380dcf570b0</ExternalId>
+                            <EndDate/>
+                        </CIFContactReference>
+                        <CIFContactReference>
+                            <SystemNumber>99995</SystemNumber>
+                            <ExternalId>ec3d0f77-61d9-4cdc-8123-7d5eea5216b7</ExternalId>
+                            <EndDate/>
+                        </CIFContactReference>
+                        <CIFContactReference>
+                            <SystemNumber>OW4</SystemNumber>
+                            <ExternalId>8883bb61-2c41-445d-95ef-c3ec3d9072c2</ExternalId>
+                            <EndDate>06/25/2020 18:46:45</EndDate>
+                        </CIFContactReference>
+                        <CIFContactReference>
+                            <SystemNumber>95000</SystemNumber>
+                            <ExternalId>09A7E8FE-77BE-E911-80F4-005056B74ABB</ExternalId>
+                            <EndDate>06/15/2020 17:38:50</EndDate>
+                        </CIFContactReference>
+                        <CIFContactReference>
+                            <SystemNumber>91000</SystemNumber>
+                            <ExternalId>20002334</ExternalId>
+                            <EndDate/>
+                        </CIFContactReference>
+                        <CIFContactReference>
+                            <SystemNumber>98000</SystemNumber>
+                            <ExternalId>9000650</ExternalId>
+                            <EndDate/>
+                        </CIFContactReference>
+                        <CIFContactReference>
+                            <SystemNumber>98000</SystemNumber>
+                            <ExternalId>cdab120b-f1d4-43e7-ba08-8a94c53927f9</ExternalId>
+                            <EndDate/>
+                        </CIFContactReference>
+                        <CIFContactReference>
+                            <SystemNumber>SBL_FR</SystemNumber>
+                            <ExternalId>1-UT1LDTA</ExternalId>
+                            <EndDate/>
+                        </CIFContactReference>
+                        <CIFContactReference>
+                            <SystemNumber>93000</SystemNumber>
+                            <ExternalId>270349</ExternalId>
+                            <EndDate/>
+                        </CIFContactReference>
+                        <CIFContactReference>
+                            <SystemNumber>93000</SystemNumber>
+                            <ExternalId>47727123-04c8-42fd-a7ed-3f083fa455ea</ExternalId>
+                            <EndDate/>
+                        </CIFContactReference>
+                        <CIFContactReference>
+                            <SystemNumber>DVID</SystemNumber>
+                            <ExternalId>0DE93CFF-A297-4FBA-B030-A4C79B7CE3CF</ExternalId>
+                            <EndDate/>
+                        </CIFContactReference>
+                        <CIFContactReference>
+                            <SystemNumber>DVID</SystemNumber>
+                            <ExternalId>12345</ExternalId>
+                            <EndDate/>
+                        </CIFContactReference>
+                        <CIFContactReference>
+                            <SystemNumber>BCO</SystemNumber>
+                            <ExternalId>9832c32b-fb2d-4ec8-91ac-b4e81cc06280</ExternalId>
+                            <EndDate/>
+                        </CIFContactReference>
+                        <CIFContactReference>
+                            <SystemNumber>IVR</SystemNumber>
+                            <ExternalId>80122229</ExternalId>
+                            <EndDate/>
+                        </CIFContactReference>
+                    </ListOfCIFContactReference>
+                    <ListOfContact_Relatives/>
+                </Contact>
+            </ListOfSwiPersonIO>
+        </ns:getPerson_Output>
+    </SOAP-ENV:Body>
+</SOAP-ENV:Envelope>

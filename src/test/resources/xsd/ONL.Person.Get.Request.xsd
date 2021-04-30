@@ -1,0 +1,30 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            xmlns="http://www.siebel.com/xml/SwiPersonIOGetRequest"
+            targetNamespace="http://www.siebel.com/xml/SwiPersonIOGetRequest"
+            elementFormDefault="qualified">
+    <xsd:element name="ListOfSwiPersonIO" type="ListOfSwiPersonIO"/>
+    <xsd:complexType name="ListOfSwiPersonIO">
+        <xsd:sequence>
+            <xsd:element name="Contact" type="Contact" maxOccurs="unbounded"/>
+        </xsd:sequence>
+        <xsd:attribute name="ExternalSystemId" type="string30"/>
+    </xsd:complexType>
+    <xsd:complexType name="Contact">
+        <xsd:sequence>
+            <xsd:element name="Id" type="string100" nillable="true"/>
+            <xsd:element name="PartyUId" type="string100" nillable="true"/>
+        </xsd:sequence>
+        <xsd:attribute name="operation" type="string30" fixed="Query"/>
+    </xsd:complexType>
+    <xsd:simpleType name="string30">
+        <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="30"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="string100">
+        <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="100"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+</xsd:schema>
