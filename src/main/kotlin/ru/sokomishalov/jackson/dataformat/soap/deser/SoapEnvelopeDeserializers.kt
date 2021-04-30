@@ -53,45 +53,14 @@ internal class SoapEnvelopeDeserializers : Deserializers.Base() {
                         }
                     }
 
+                    type == START_ELEMENT && sr.localName == "Fault" -> {
+                        sr.soapFault()
+                    }
+
                     type == START_ELEMENT && sr.localName == "Body" -> {
                         when {
                             sr.nextTag() == START_ELEMENT && sr.localName == "Fault" -> {
-                                var message: String? = null
-                                var code: String? = null
-
-                                while (sr.hasNext()) {
-                                    if (sr.next() == START_ELEMENT) {
-                                        when (sr.localName) {
-                                            "faultstring" -> {
-                                                if (sr.next() == CHARACTERS) message = sr.text
-                                            }
-                                            "faultcode" -> {
-                                                if (sr.next() == CHARACTERS) code = sr.text
-                                            }
-                                            "Reason" -> {
-                                                while (sr.hasNext()) {
-                                                    if (sr.next() == START_ELEMENT && sr.localName == "Text") {
-                                                        if (sr.next() == CHARACTERS) message = sr.text
-                                                        break
-                                                    }
-                                                }
-                                            }
-                                            "Code" -> {
-                                                while (sr.hasNext()) {
-                                                    if (sr.next() == START_ELEMENT && sr.localName == "Value") {
-                                                        if (sr.next() == CHARACTERS) code = sr.text
-                                                        break
-                                                    }
-                                                }
-                                            }
-                                        }
-                                    }
-                                }
-
-                                throw SoapFault(
-                                    message = message,
-                                    code = code
-                                )
+                                sr.soapFault()
                             }
                             bodyClass != null && bodyClass != Nothing::class.java -> {
                                 body = parser.readValueAs(bodyClass)
@@ -104,6 +73,45 @@ internal class SoapEnvelopeDeserializers : Deserializers.Base() {
             return SoapEnvelope(
                 header = header,
                 body = body
+            )
+        }
+
+        private fun XMLStreamReader.soapFault() {
+            var message: String? = null
+            var code: String? = null
+
+            while (hasNext()) {
+                if (next() == START_ELEMENT) {
+                    when (localName) {
+                        "faultstring" -> {
+                            if (next() == CHARACTERS) message = text
+                        }
+                        "faultcode" -> {
+                            if (next() == CHARACTERS) code = text
+                        }
+                        "Reason" -> {
+                            while (hasNext()) {
+                                if (next() == START_ELEMENT && localName == "Text") {
+                                    if (next() == CHARACTERS) message = text
+                                    break
+                                }
+                            }
+                        }
+                        "Code" -> {
+                            while (hasNext()) {
+                                if (next() == START_ELEMENT && localName == "Value") {
+                                    if (next() == CHARACTERS) code = text
+                                    break
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            throw SoapFault(
+                message = message,
+                code = code
             )
         }
 

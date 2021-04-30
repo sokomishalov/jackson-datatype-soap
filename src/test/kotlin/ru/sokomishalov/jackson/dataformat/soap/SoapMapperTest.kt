@@ -48,7 +48,7 @@ class SoapMapperTest {
     @Test
     fun `Deserialize pojo`() {
         val content = readResource("/example/get_person_output.xml")
-        val soapEnvelope = mapper.readValue<SoapEnvelope<GetPersonInput?, GetPersonOutput?>>(content)
+        val soapEnvelope = mapper.readValue<GetPersonInput, GetPersonOutput>(content)
 
         logInfo { mapper.writeValueAsString(soapEnvelope) }
         assertNotNull(soapEnvelope)
@@ -109,7 +109,7 @@ class SoapMapperTest {
     @Test
     fun `Deserialize pojo with ws addressing`() {
         val content = readResource("/example/get_person_output_ws_addr.xml")
-        val soapEnvelope = mapper.readValue<SoapEnvelope<SoapAddressingHeaders?, GetPersonOutput?>>(content)
+        val soapEnvelope = mapper.readValue<SoapAddressingHeaders?, GetPersonOutput?>(content)
 
         logInfo { mapper.writeValueAsString(soapEnvelope) }
         assertNotNull(soapEnvelope)
@@ -138,7 +138,7 @@ class SoapMapperTest {
     @Test
     fun `Deserialize soap 1_1 fault`() {
         val content = readResource("/example/soap_fault_1_1.xml")
-        val soapFault = assertFailsWith<SoapFault> { mapper.readValue<SoapEnvelope<Nothing?, GetPersonOutput?>>(content) }
+        val soapFault = assertFailsWith<SoapFault> { mapper.readValueBody<GetPersonOutput>(content) }
 
         logInfo { mapper.writeValueAsString(soapFault) }
         assertNotNull(soapFault)
@@ -150,7 +150,7 @@ class SoapMapperTest {
     @Test
     fun `Deserialize soap 1_2 fault`() {
         val content = readResource("/example/soap_fault_1_2.xml")
-        val soapFault = assertFailsWith<SoapFault> { mapper.readValue<SoapEnvelope<Nothing?, GetPersonOutput?>>(content) }
+        val soapFault = assertFailsWith<SoapFault> { mapper.readValueBody<GetPersonOutput>(content) }
 
         logInfo { mapper.writeValueAsString(soapFault) }
         assertNotNull(soapFault)
