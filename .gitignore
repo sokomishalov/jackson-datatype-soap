@@ -1,0 +1,51 @@
+HELP.md
+target/
+!.mvn/wrapper/maven-wrapper.jar
+!**/src/main/**
+!**/src/test/**
+.gradle/
+.DS_Store
+.m2/
+
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+
+### IntelliJ IDEA ###
+.idea/*
+!/.idea/runConfigurations
+*.iws
+*.iml
+*.ipr
+
+### NetBeans ###
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+build/
+
+### VS Code ###
+.vscode/
+
+### Android ###
+local.properties
+/build
+/captures
+.externalNativeBuild
+.cxx
+
+### Generated ###
+*.log
+*.csv
+*.json
+*.yaml
+
+### custom ###
+.flattened-pom.xml
