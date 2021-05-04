@@ -43,30 +43,36 @@ internal class SoapEnvelopeDeserializers : Deserializers.Base() {
             var body: Any? = null
 
             while (sr.hasNext()) {
-                val type = sr.next()
-                when {
-                    type == START_ELEMENT && sr.localName == "Header" -> {
-                        header = when (headerClass) {
-                            null, Nothing::class.java -> null
-                            SoapAddressingHeaders::class.java -> parser.clone(sr).readValueAs(headerClass)
-                            else -> if (sr.next() != END_ELEMENT) parser.clone(sr).readValueAs(headerClass) else null
-                        }
-                    }
-
-                    type == START_ELEMENT && sr.localName == "Fault" -> {
-                        sr.soapFault()
-                    }
-
-                    type == START_ELEMENT && sr.localName == "Body" -> {
-                        when {
-                            sr.nextTag() == START_ELEMENT && sr.localName == "Fault" -> {
-                                sr.soapFault()
-                            }
-                            bodyClass != null && bodyClass != Nothing::class.java -> {
-                                body = parser.readValueAs(bodyClass)
+                val type = sr.eventType
+                if (type == START_ELEMENT) {
+                    when (sr.localName) {
+                        "Header" -> {
+                            header = when (headerClass) {
+                                null, Nothing::class.java -> null
+                                SoapAddressingHeaders::class.java -> parser.clone(sr).readValueAs(headerClass)
+                                else -> if (sr.next() != END_ELEMENT) parser.clone(sr).readValueAs(headerClass) else null
                             }
                         }
+                        "Fault" -> {
+                            sr.soapFault()
+                        }
+                        "Body" -> {
+                            when {
+                                sr.nextTag() == START_ELEMENT && sr.localName == "Fault" -> {
+                                    sr.soapFault()
+                                }
+                                bodyClass != null && bodyClass != Nothing::class.java -> {
+                                    sr.nextTag()
+                                    body = parser.readValueAs(bodyClass)
+                                }
+                            }
+                        }
                     }
+                }
+                try {
+                    sr.next()
+                } catch (e: NoSuchElementException) {
+                    break
                 }
             }
 

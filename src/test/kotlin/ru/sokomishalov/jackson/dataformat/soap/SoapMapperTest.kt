@@ -1,6 +1,5 @@
 package ru.sokomishalov.jackson.dataformat.soap
 
-import com.fasterxml.jackson.module.kotlin.readValue
 import com.oracle.xmlns.apps.mdm.customer.GetPersonInput
 import com.oracle.xmlns.apps.mdm.customer.GetPersonOutput
 import org.junit.jupiter.api.Test
