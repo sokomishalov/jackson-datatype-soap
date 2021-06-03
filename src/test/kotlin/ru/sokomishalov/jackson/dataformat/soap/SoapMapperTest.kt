@@ -38,13 +38,13 @@ class SoapMapperTest {
             ":Address>",
             ":Envelope",
             ":Contact>",
-            ":PartyUId>",
+            ":Id>",
             ":Body>",
             "ExternalSystemId=",
             "ExternalSystemName=",
             ":ListOfSwiPersonIO",
             ":FirstName>",
-            ":FirstNameLat>"
+            ":LastName>"
         ).forEach {
             assertTrue("$it is not present") { it in result }
         }
