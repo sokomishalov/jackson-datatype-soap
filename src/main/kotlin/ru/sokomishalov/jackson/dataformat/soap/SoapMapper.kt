@@ -27,7 +27,8 @@ class SoapMapper : XmlMapper() {
         registerModule(SoapModule())
     }
 
-    fun <H, B> readValue(envelope: String, bodyClass: Class<B>, headerClass: Class<H>?): SoapEnvelope<H, B> {
+    @JvmOverloads
+    fun <H, B> readValue(envelope: String, bodyClass: Class<B>, headerClass: Class<H>? = null): SoapEnvelope<H, B> {
         return readValue(envelope, createGenericSoapEnvelope(headerClass, bodyClass))
     }
 
