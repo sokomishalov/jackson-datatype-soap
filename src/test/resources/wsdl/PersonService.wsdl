@@ -8,13 +8,55 @@
              targetNamespace="http://xmlns.oracle.com/apps/mdm/customer">
 
     <types>
+        <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+                    xmlns="http://www.siebel.com/xml/SwiPersonIOGetRequest"
+                    targetNamespace="http://www.siebel.com/xml/SwiPersonIOGetRequest"
+                    elementFormDefault="qualified">
+            <xsd:element name="ListOfSwiPersonIO" type="ListOfSwiPersonIO"/>
+            <xsd:complexType name="ListOfSwiPersonIO">
+                <xsd:sequence>
+                    <xsd:element name="Contact" type="Contact" maxOccurs="unbounded"/>
+                </xsd:sequence>
+                <xsd:attribute name="ExternalSystemId" type="xsd:string"/>
+            </xsd:complexType>
+            <xsd:complexType name="Contact">
+                <xsd:sequence>
+                    <xsd:element name="Id" type="xsd:string" nillable="true"/>
+                </xsd:sequence>
+                <xsd:attribute name="operation" type="xsd:string" fixed="Query"/>
+            </xsd:complexType>
+        </xsd:schema>
+
+        <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+                    xmlns="http://www.siebel.com/xml/SwiPersonIO"
+                    targetNamespace="http://www.siebel.com/xml/SwiPersonIO"
+                    elementFormDefault="qualified">
+            <xsd:element name="ListOfSwiPersonIO" type="ListOfSwiPersonIO"/>
+            <xsd:complexType name="ListOfSwiPersonIO">
+                <xsd:sequence>
+                    <xsd:element name="Contact" type="Contact" maxOccurs="unbounded"/>
+                </xsd:sequence>
+                <xsd:attribute name="ExternalSystemId" type="xsd:string"/>
+                <xsd:attribute name="ExternalSystemName" type="xsd:string"/>
+                <xsd:attribute name="EnterpriseServerName" type="xsd:string"/>
+                <xsd:attribute name="Locale" type="xsd:string"/>
+                <xsd:attribute name="Language" type="xsd:string"/>
+            </xsd:complexType>
+            <xsd:complexType name="Contact">
+                <xsd:sequence>
+                    <xsd:element name="Id" type="xsd:string" minOccurs="0" nillable="true"/>
+                    <xsd:element name="BirthDate" type="xsd:string" nillable="true"/>
+                    <xsd:element name="FirstName" type="xsd:string"/>
+                    <xsd:element name="LastName" type="xsd:string"/>
+                    <xsd:element name="MF" type="xsd:string" nillable="true"/>
+                    <xsd:element name="Terminated" type="xsd:string" nillable="true"/>
+                </xsd:sequence>
+                <xsd:attribute name="operation" type="xsd:string"/>
+            </xsd:complexType>
+        </xsd:schema>
+
         <xsd:schema elementFormDefault="qualified"
                     targetNamespace="http://xmlns.oracle.com/apps/mdm/customer">
-            <xsd:import namespace="http://www.siebel.com/xml/SwiPersonIOGetRequest"
-                        schemaLocation="../xsd/ONL.Person.Get.Request.xsd"/>
-            <xsd:import namespace="http://www.siebel.com/xml/SwiPersonIO"
-                        schemaLocation="../xsd/ONL.Person.Get.Response.xsd"/>
-
             <xsd:element name="getPerson_Input">
                 <xsd:complexType>
                     <xsd:sequence>
