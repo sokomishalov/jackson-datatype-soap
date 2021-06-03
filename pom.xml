@@ -114,9 +114,6 @@
                     </dependency>
                 </dependencies>
                 <configuration>
-                    <compilerPlugins>
-                        <plugin>spring</plugin>
-                    </compilerPlugins>
                     <jvmTarget>${java.version}</jvmTarget>
                 </configuration>
                 <executions>

@@ -16,65 +16,10 @@ class SoapMapperTest {
 
     @Test
     fun `Serialize pojo`() {
-        val header = random<GetPersonInput>()
+        val header = random<SoapAddressingHeaders>()
         val body = random<GetPersonOutput>().apply {
             listOfSwiPersonIO.contact.forEach { it.id = JAXBElement(QName("id"), String::class.java, "1500232321") }
         }
-
-        val envelope = SoapEnvelope(body = body, header = header)
-
-        val result = mapper.writeValueAsString(envelope)
-
-        logInfo { result }
-
-        assertTrue { result.isNotNullOrBlank() }
-
-        listOf(
-            ":Envelope",
-            ":Contact>",
-            ":PartyUId>",
-            ":Body>",
-            "ExternalSystemId=",
-            "ExternalSystemName=",
-            ":ListOfSwiPersonIO",
-            ":FirstName>",
-            ":FirstNameLat>"
-        ).forEach {
-            assertTrue("$it is not present") { it in result }
-        }
-    }
-
-    @Test
-    fun `Deserialize pojo`() {
-        val content = readResource("/example/get_person_output.xml")
-        val soapEnvelope = mapper.readValue<GetPersonInput, GetPersonOutput>(content)
-
-        logInfo { mapper.writeValueAsString(soapEnvelope) }
-        assertNotNull(soapEnvelope)
-
-        assertNotNull(soapEnvelope.header)
-        assertNotNull(soapEnvelope.header?.listOfSwiPersonIO?.contact?.firstOrNull()?.id)
-        assertNotNull(soapEnvelope.header?.listOfSwiPersonIO?.contact?.firstOrNull()?.partyUId)
-
-        assertNotNull(soapEnvelope.body)
-        val pojo = soapEnvelope.body
-        assertNotNull(pojo)
-        assertNotNull(pojo.listOfSwiPersonIO)
-        assertNotNull(pojo.listOfSwiPersonIO.contact)
-        assertTrue { pojo.listOfSwiPersonIO.contact.isNotEmpty() }
-        assertNotNull(pojo.listOfSwiPersonIO.contact[0].id?.value)
-        pojo.listOfSwiPersonIO.contact.forEach {
-            assertTrue { it.partyUId.isNotNullOrBlank() }
-            assertTrue { it.firstName.isNotNullOrBlank() }
-            assertTrue { it.firstNameLat.isNotNullOrBlank() }
-            assertEquals(5, it.listOfContactAlternatePhone.contactAlternatePhone.size)
-        }
-    }
-
-    @Test
-    fun `Serialize pojo with ws addressing`() {
-        val body = random<GetPersonOutput>()
-        val header = random<SoapAddressingHeaders>()
 
         val envelope = SoapEnvelope(body = body, header = header)
 
@@ -106,7 +51,7 @@ class SoapMapperTest {
     }
 
     @Test
-    fun `Deserialize pojo with ws addressing`() {
+    fun `Deserialize pojo`() {
         val content = readResource("/example/get_person_output_ws_addr.xml")
         val soapEnvelope = mapper.readValue<SoapAddressingHeaders?, GetPersonOutput?>(content)
 
@@ -126,11 +71,11 @@ class SoapMapperTest {
         assertNotNull(pojo)
         assertNotNull(pojo.listOfSwiPersonIO)
         assertNotNull(pojo.listOfSwiPersonIO.contact)
-        assertTrue { pojo.listOfSwiPersonIO.contact.isNotEmpty() }
+        assertEquals(2, pojo.listOfSwiPersonIO?.contact?.size)
         pojo.listOfSwiPersonIO.contact.forEach {
-            assertTrue { it.partyUId.isNotNullOrBlank() }
+            assertTrue { it.id.value.isNotNullOrBlank() }
             assertTrue { it.firstName.isNotNullOrBlank() }
-            assertTrue { it.firstNameLat.isNotNullOrBlank() }
+            assertTrue { it.lastName.isNotNullOrBlank() }
         }
     }
 
