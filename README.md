@@ -7,7 +7,7 @@ jackson-dataformat-soap
 
 ## Overview
 
-Soap (de)serialization over jackson-dataformat-xml
+Jackson SOAP implementation over jackson-dataformat-xml
 
 ## Distribution
 
