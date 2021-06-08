@@ -29,3 +29,15 @@ implementation("ru.sokomishalov.jackson:jackson-dataformat-soap:0.1.0")
 ```
 
 ## Usage
+
+You need to know that jackson requires to have setters for correct deserialization. So, if you are using code generation
+from xsd/wsdl you also have to provide setters for collections like [here](https://gist.github.com/meiwin/2779731).
+
+```kotlin
+fun main() {
+    val mapper = SoapMapper()
+    val content = GetPersonOutput::class.java.getResource("/example/get_person_output_ws_addr.xml")?.readText().orEmpty()
+    val deserialized: SoapEnvelope<SoapAddressingHeaders, GetPersonOutput> = mapper.readValue(content)
+    val serialized = mapper.writeValueAsString(deserialized)
+}
+```

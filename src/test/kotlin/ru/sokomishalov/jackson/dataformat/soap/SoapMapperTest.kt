@@ -15,7 +15,6 @@
  */
 package ru.sokomishalov.jackson.dataformat.soap
 
-import com.oracle.xmlns.apps.mdm.customer.GetPersonInput
 import com.oracle.xmlns.apps.mdm.customer.GetPersonOutput
 import org.junit.jupiter.api.Test
 import ru.sokomishalov.commons.core.log.Loggable
