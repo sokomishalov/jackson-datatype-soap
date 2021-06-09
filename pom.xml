@@ -6,7 +6,7 @@
 
     <groupId>ru.sokomishalov.jackson</groupId>
     <artifactId>jackson-dataformat-soap</artifactId>
-    <version>0.1.0-SNAPSHOT</version>
+    <version>0.1.0</version>
 
     <properties>
         <java.version>1.8</java.version>
@@ -283,6 +283,12 @@
                                 <goals>
                                     <goal>sign</goal>
                                 </goals>
+                                <configuration>
+                                    <gpgArguments>
+                                        <arg>--pinentry-mode</arg>
+                                        <arg>loopback</arg>
+                                    </gpgArguments>
+                                </configuration>
                             </execution>
                         </executions>
                     </plugin>
