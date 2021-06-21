@@ -18,14 +18,14 @@ Maven:
 <dependency>
     <groupId>ru.sokomishalov.jackson</groupId>
     <artifactId>jackson-dataformat-soap</artifactId>
-    <version>0.1.0</version>
+    <version>0.1.1</version>
 </dependency>
 ```
 
 Gradle kotlin dsl:
 
 ```kotlin
-implementation("ru.sokomishalov.jackson:jackson-dataformat-soap:0.1.0")
+implementation("ru.sokomishalov.jackson:jackson-dataformat-soap:0.1.1")
 ```
 
 ## Usage
