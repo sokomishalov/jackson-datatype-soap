@@ -147,9 +147,6 @@
                             <wsdlOptions>
                                 <wsdlOption>
                                     <wsdl>${project.basedir}/src/test/resources/wsdl/PersonService.wsdl</wsdl>
-                                    <extraargs>
-                                        <extraarg>-xjc-Xcollection-setter-injector</extraarg>
-                                    </extraargs>
                                 </wsdlOption>
                             </wsdlOptions>
                         </configuration>
@@ -158,13 +155,6 @@
                         </goals>
                     </execution>
                 </executions>
-                <dependencies>
-                    <dependency>
-                        <groupId>net.java.dev.vcc.thirdparty</groupId>
-                        <artifactId>collection-setter-injector</artifactId>
-                        <version>0.5.0-1</version>
-                    </dependency>
-                </dependencies>
             </plugin>
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
