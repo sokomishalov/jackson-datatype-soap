@@ -49,7 +49,6 @@ open class SoapModule @JvmOverloads constructor(
                 enable(ACCEPT_CASE_INSENSITIVE_PROPERTIES)
                 disable(FAIL_ON_EMPTY_BEANS, WRITE_DATES_AS_TIMESTAMPS)
                 disable(FAIL_ON_READING_DUP_TREE_KEY, FAIL_ON_UNKNOWN_PROPERTIES)
-                setSerializerProvider(AlwaysUseNamespacesXmlSerializerProvider())
                 (factory as? XmlFactory)?.xmlOutputFactory?.setProperty(P_AUTOMATIC_NS_PREFIX, namespacePrefix)
             }
             super.setupModule(this)

@@ -28,11 +28,6 @@ Gradle kotlin dsl:
 implementation("ru.sokomishalov.jackson:jackson-dataformat-soap:0.1.0")
 ```
 
-## Prerequisites
-
-You need to know that jackson requires to have setters for correct deserialization. So, if you are using code generation
-from xsd/wsdl you also have to provide setters for collections like [here](https://gist.github.com/meiwin/2779731).
-
 ## Usage
 
 ```kotlin
