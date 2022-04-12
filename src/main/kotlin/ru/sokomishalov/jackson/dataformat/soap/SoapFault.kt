@@ -18,7 +18,7 @@ package ru.sokomishalov.jackson.dataformat.soap
 /**
  * @author sokomishalov
  */
-data class SoapFault @JvmOverloads constructor(
-    override val message: String? = null,
-    val code: String? = null
+data class SoapFault internal constructor(
+    override val message: String?,
+    val code: String?
 ) : RuntimeException(message ?: "Unknown SOAP error occurred")

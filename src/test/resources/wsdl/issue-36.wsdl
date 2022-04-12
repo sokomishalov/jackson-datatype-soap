@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions
+        xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+        xmlns:xs="http://www.w3.org/2001/XMLSchema"
+        xmlns:tns="http://www.addmore.de/GroupList/GroupList-001.wsdl"
+        xmlns:http="http://schemas.xmlsoap.org/wsdl/http/"
+        xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/"
+        targetNamespace="http://www.addmore.de/GroupList/GroupList-001.wsdl">
+    <wsdl:types>
+        <schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.addmore.de/GroupList/GroupList-001.wsdl">
+            <xs:element name="GetGroupListRequest">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="rowCount" type="integer"/>
+                        <xs:element name="banList">
+                            <xs:complexType>
+                                <xs:sequence>
+                                    <xs:element name="ban" type="integer" maxOccurs="10"/>
+                                </xs:sequence>
+                            </xs:complexType>
+                        </xs:element>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="GetGroupListResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="rowCount" type="integer"/>
+                        <xs:element name="vpnGroup" type="string" minOccurs="0" maxOccurs="600"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="appMonDetailsStrict">
+                <xs:complexType>
+                    <xs:sequence>
+                        <element name="bpId" type="string"/>
+                        <element name="bpName" type="string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="controllObject">
+                <xs:complexType>
+                    <xs:sequence>
+                        <element name="timeout" type="unsignedInt"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="functionalException"></xs:element>
+            <xs:element name="technicalException"></xs:element>
+        </schema>
+    </wsdl:types>
+    <wsdl:message name="appMonDetailsStrictHeader">
+        <wsdl:part name="AppMonDetailsStrict" element="tns:appMonDetailsStrict"/>
+    </wsdl:message>
+    <wsdl:message name="controllObject">
+        <wsdl:part name="ControllObject" element="tns:controllObject"/>
+    </wsdl:message>
+    <wsdl:message name="functionalException">
+        <wsdl:part name="FunctionalException" element="tns:functionalException"/>
+    </wsdl:message>
+    <wsdl:message name="technicalException">
+        <wsdl:part name="TechnicalException" element="tns:technicalException"/>
+    </wsdl:message>
+    <wsdl:message name="GetGroupListRequest">
+        <wsdl:part element="tns:GetGroupListRequest" name="GetGroupListRequest"/>
+    </wsdl:message>
+    <wsdl:message name="GetGroupListResponse">
+        <wsdl:part element="tns:GetGroupListResponse" name="GetGroupListResponse"/>
+    </wsdl:message>
+    <wsdl:portType name="GroupListPortType">
+        <wsdl:operation name="GetGroupList">
+            <wsdl:input message="tns:GetGroupListRequest" name="GetGroupListRequest"/>
+            <wsdl:output message="tns:GetGroupListResponse" name="GetGroupListResponse"/>
+            <wsdl:fault message="tns:functionalException" name="functionalException"/>
+            <wsdl:fault message="tns:technicalException" name="technicalException"/>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="GroupListEndpointBinding" type="tns:GroupListPortType">
+        <soap12:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="GetGroupList">
+            <soap12:operation soapAction="/GroupList-001/GetGroupList" soapActionRequired="true"/>
+            <wsdl:input>
+                <soap12:body parts="GetGroupListRequest" use="literal"/>
+                <soap12:header message="tns:appMonDetailsStrictHeader" part="AppMonDetailsStrict" use="literal"
+                               wsdl:required="true"/>
+                <soap12:header message="tns:controllObject" part="ControllObject" use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body parts="GetGroupListResponse" use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="functionalException">
+                <soap12:fault name="functionalException" use="literal"/>
+            </wsdl:fault>
+            <wsdl:fault name="technicalException">
+                <soap12:fault name="technicalException" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:service name="GroupList">
+        <wsdl:port binding="tns:GroupListEndpointBinding" name="GroupListEndpoint">
+            <soap12:address location="http://www.addmore.de/"/>
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>
