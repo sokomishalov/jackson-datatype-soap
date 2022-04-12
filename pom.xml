@@ -11,7 +11,7 @@
     <properties>
         <java.version>1.8</java.version>
         <kotlin.version>1.6.20</kotlin.version>
-        <jackson.version>2.13.2</jackson.version>
+        <jackson.version>2.13.2.20220328</jackson.version>
 
         <maven.compiler.source>${java.version}</maven.compiler.source>
         <maven.compiler.target>${java.version}</maven.compiler.target>
