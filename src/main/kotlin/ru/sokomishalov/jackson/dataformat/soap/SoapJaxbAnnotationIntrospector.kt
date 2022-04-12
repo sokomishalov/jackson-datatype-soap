@@ -19,6 +19,7 @@ package ru.sokomishalov.jackson.dataformat.soap
 
 import com.fasterxml.jackson.databind.PropertyName
 import com.fasterxml.jackson.databind.PropertyName.NO_NAME
+import com.fasterxml.jackson.databind.cfg.MapperConfig
 import com.fasterxml.jackson.databind.introspect.Annotated
 import com.fasterxml.jackson.databind.type.TypeFactory
 import com.fasterxml.jackson.databind.util.ClassUtil
@@ -30,12 +31,9 @@ import javax.xml.bind.annotation.XmlAttribute
 import javax.xml.bind.annotation.XmlElement
 import javax.xml.bind.annotation.XmlElementWrapper
 
+open class SoapJaxbAnnotationIntrospector : JaxbAnnotationIntrospector(TypeFactory.defaultInstance()) {
 
-open class SoapJaxbAnnotationIntrospector @JvmOverloads constructor(
-    typeFactory: TypeFactory = TypeFactory.defaultInstance()
-) : JaxbAnnotationIntrospector(typeFactory) {
-
-    override fun findNamespace(ann: Annotated): String? = ann.rawType?.let { t ->
+    override fun findNamespace(config: MapperConfig<*>?, ann: Annotated?): String? = ann?.rawType?.let { t ->
         val annotationNamespace = ann.annotated.getAnnotation(XmlElement::class.java)?.namespace
 
         when {
@@ -54,7 +52,7 @@ open class SoapJaxbAnnotationIntrospector @JvmOverloads constructor(
     }
 
     override fun findNullSerializer(ann: Annotated?): Any? = when {
-        isOutputAsAttribute(ann) == true -> null
+        isOutputAsAttribute(null, ann) == true -> null
         else -> SoapEnvelopeSerializers.XsiNilSerializer
     }
 
