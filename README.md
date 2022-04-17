@@ -18,22 +18,23 @@ Maven:
 <dependency>
     <groupId>ru.sokomishalov.jackson</groupId>
     <artifactId>jackson-dataformat-soap</artifactId>
-    <version>0.1.1</version>
+    <version>x.y.z</version>
 </dependency>
 ```
 
 Gradle kotlin dsl:
 
 ```kotlin
-implementation("ru.sokomishalov.jackson:jackson-dataformat-soap:0.1.1")
+implementation("ru.sokomishalov.jackson:jackson-dataformat-soap:x.y.z")
 ```
 
 ## Usage
 
+Used [this SOAP message](./src/test/resources/example/get_person_output_ws_addr.xml) for deserialization in example below.
 ```kotlin
 fun main() {
     val mapper = SoapMapper()
-    val content = GetPersonOutput::class.java.getResource("/example/get_person_output_ws_addr.xml")?.readText().orEmpty()
+    val content = this.javaClass.getResource("/example/get_person_output_ws_addr.xml").readText()
     val deserialized: SoapEnvelope<SoapAddressingHeaders, GetPersonOutput> = mapper.readValue(content)
     val serialized = mapper.writeValueAsString(deserialized)
 }
