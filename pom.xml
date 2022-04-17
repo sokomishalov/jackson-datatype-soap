@@ -6,12 +6,13 @@
 
     <groupId>ru.sokomishalov.jackson</groupId>
     <artifactId>jackson-dataformat-soap</artifactId>
-    <version>0.1.2-SHAPSHOT</version>
+    <version>0.2.0-SHAPSHOT</version>
 
     <properties>
         <java.version>1.8</java.version>
         <kotlin.version>1.6.20</kotlin.version>
-        <jackson.version>2.13.2</jackson.version>
+        <jackson.version>2.13.2.20220328</jackson.version>
+        <jeasy-random.version>4.3.0</jeasy-random.version>
 
         <maven.compiler.source>${java.version}</maven.compiler.source>
         <maven.compiler.target>${java.version}</maven.compiler.target>
@@ -46,7 +47,7 @@
         <dependency>
             <groupId>org.jeasy</groupId>
             <artifactId>easy-random-core</artifactId>
-            <version>4.3.0</version>
+            <version>${jeasy-random.version}</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
