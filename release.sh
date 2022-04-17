@@ -22,7 +22,7 @@ docker run -it --rm -e CHANGELOG_GITHUB_TOKEN -v "$(pwd)":/usr/local/src/your-ap
 git add CHANGELOG.md
 
 # deploy to maven central
-#./mvnw -P ossrh -D skipTests clean dokka:javadocJar deploy
+./mvnw -P ossrh -D skipTests clean dokka:javadocJar deploy
 
 # commit changes
 git commit -m "$NEW_VERSION - new release"
