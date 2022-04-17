@@ -9,7 +9,7 @@
     <version>${revision}</version>
 
     <properties>
-        <revision>0.2.0</revision>
+        <revision>0.2.1-SNAPSHOT</revision>
 
         <java.version>1.8</java.version>
         <kotlin.version>1.6.20</kotlin.version>
