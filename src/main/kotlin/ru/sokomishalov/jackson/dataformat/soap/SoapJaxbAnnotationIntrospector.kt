@@ -27,6 +27,7 @@ import com.fasterxml.jackson.module.jaxb.JaxbAnnotationIntrospector
 import ru.sokomishalov.jackson.dataformat.soap.ser.SoapEnvelopeSerializers
 import ru.sokomishalov.jackson.dataformat.soap.util.NamespaceCache
 import java.lang.reflect.Field
+import java.lang.reflect.Method
 import javax.xml.bind.annotation.XmlAttribute
 import javax.xml.bind.annotation.XmlElement
 import javax.xml.bind.annotation.XmlElementWrapper
@@ -44,7 +45,7 @@ open class SoapJaxbAnnotationIntrospector : JaxbAnnotationIntrospector(TypeFacto
             ann.annotated.isAnnotationPresent(XmlAttribute::class.java) -> ""
 
             // fields with primitives or collections have parent namespaces
-            ann.annotated is Field || ClassUtil.isJDKClass(t) -> (ann.annotated as Field).declaringClass.namespace
+            ann.annotated is Field || ann.annotated is Method || ClassUtil.isJDKClass(t) -> ann.parentNamespace
 
             // other classes have their own namespaces
             else -> t.namespace
@@ -61,5 +62,10 @@ open class SoapJaxbAnnotationIntrospector : JaxbAnnotationIntrospector(TypeFacto
         else -> super.findWrapperName(ann)
     }
 
+    protected val Annotated.parentNamespace: String get() = when (val annotatedElement = annotated) {
+        is Field -> annotatedElement.declaringClass.namespace
+        is Method -> annotatedElement.declaringClass.namespace
+        else -> ""
+    }
     protected val Class<*>.namespace: String get() = NamespaceCache.getNamespace(this)
 }

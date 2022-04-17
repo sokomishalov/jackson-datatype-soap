@@ -20,11 +20,11 @@ import com.fasterxml.jackson.databind.*
 import com.fasterxml.jackson.databind.ser.Serializers
 import com.fasterxml.jackson.databind.ser.std.StdSerializer
 import com.fasterxml.jackson.dataformat.xml.ser.ToXmlGenerator
-import ru.sokomishalov.jackson.dataformat.soap.util.NamespaceCache
 import ru.sokomishalov.jackson.dataformat.soap.SoapAddressingHeaders
 import ru.sokomishalov.jackson.dataformat.soap.SoapConstants.SOAP_ADDRESSING_NAMESPACE
 import ru.sokomishalov.jackson.dataformat.soap.SoapConstants.XML_SCHEMA_NAMESPACE
 import ru.sokomishalov.jackson.dataformat.soap.SoapEnvelope
+import ru.sokomishalov.jackson.dataformat.soap.util.NamespaceCache
 import javax.xml.bind.JAXBElement
 import javax.xml.bind.annotation.XmlRootElement
 import javax.xml.namespace.QName
@@ -38,7 +38,7 @@ internal class SoapEnvelopeSerializers(private val ns: String) : Serializers.Bas
         config: SerializationConfig,
         type: JavaType,
         beanDesc: BeanDescription
-    ): JsonSerializer<*>? = when  {
+    ): JsonSerializer<*>? = when {
         SoapEnvelope::class.java.isAssignableFrom(type.rawClass) -> SoapEnvelopeSerializer(ns)
         JAXBElement::class.java.isAssignableFrom(type.rawClass) -> JaxbElementSerializer
         else -> super.findSerializer(config, type, beanDesc)
@@ -52,21 +52,21 @@ internal class SoapEnvelopeSerializers(private val ns: String) : Serializers.Bas
                     setNextName(QName(ns, "Envelope"))
                     writeStartObject()
                     staxWriter.writeNamespace("xsi", XML_SCHEMA_NAMESPACE)
-                    serializeElement("Header", envelope.header)
-                    serializeElement("Body", envelope.body)
+                    serializeElement(localPart = "Header", element = envelope.header, isHeader = true)
+                    serializeElement(localPart = "Body", element = envelope.body, isHeader = false)
                     writeEndObject()
                 }
             }
         }
 
-        private fun ToXmlGenerator.serializeElement(localPart: String, element: Any?) {
+        private fun ToXmlGenerator.serializeElement(localPart: String, element: Any?, isHeader: Boolean) {
             with(this) {
                 setNextName(QName(ns, localPart))
                 writeFieldName(localPart)
 
                 val annotation = element?.javaClass?.getAnnotation(XmlRootElement::class.java)
                 when {
-                    element is SoapAddressingHeaders -> {
+                    isHeader && element is SoapAddressingHeaders -> {
                         writeStartObject()
                         staxWriter.writeNamespace("wsa", SOAP_ADDRESSING_NAMESPACE)
 
@@ -78,6 +78,17 @@ internal class SoapEnvelopeSerializers(private val ns: String) : Serializers.Bas
                         writeSoapAddressingEndpoint("ReplyTo", element.replyTo)
                         writeSoapAddressingEndpoint("FaultTo", element.faultTo)
 
+                        writeEndObject()
+                    }
+                    isHeader && element is Iterable<*> -> {
+                        writeStartObject()
+                        element.forEach {
+                            if (it != null) {
+                                setNextName(QName(NamespaceCache.getNamespace(it.javaClass), annotation?.name ?: it.javaClass.simpleName))
+                                writeFieldName(annotation?.name ?: it.javaClass.simpleName)
+                                writeObject(it)
+                            }
+                        }
                         writeEndObject()
                     }
                     annotation != null -> {
@@ -116,7 +127,6 @@ internal class SoapEnvelopeSerializers(private val ns: String) : Serializers.Bas
     }
 
     internal object JaxbElementSerializer : StdSerializer<JAXBElement<*>>(JAXBElement::class.java) {
-
         override fun serialize(value: JAXBElement<*>?, gen: JsonGenerator, provider: SerializerProvider) {
             when {
                 value != null && !value.isNil -> gen.writeObject(value.value)

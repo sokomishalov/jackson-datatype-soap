@@ -13,19 +13,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-@file:Suppress("unused")
-
 package ru.sokomishalov.jackson.dataformat.soap
 
 /**
  * @author sokomishalov
  */
-data class SoapEnvelope<H, B> @JvmOverloads constructor(
-    val header: H? = null,
-    val body: B? = null
-) {
-    companion object {
-        @JvmStatic
-        fun <B> fromBody(body: B?): SoapEnvelope<Nothing, B?> = SoapEnvelope(header = null, body = body)
-    }
+data class SoapMultipleHeaders<H : Any>(val headers: Iterable<H>) : Iterable<H> by headers {
+    constructor(vararg headers: H) : this(headers.toList())
 }

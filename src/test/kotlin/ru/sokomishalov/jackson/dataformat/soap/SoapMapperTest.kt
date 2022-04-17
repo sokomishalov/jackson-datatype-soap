@@ -16,11 +16,12 @@
 package ru.sokomishalov.jackson.dataformat.soap
 
 import com.oracle.xmlns.apps.mdm.customer.GetPersonOutput
+import de.addmore.grouplist.grouplist_001.AppMonDetailsStrict
+import de.addmore.grouplist.grouplist_001.ControllObject
+import de.addmore.grouplist.grouplist_001.GetGroupListRequest
 import org.jeasy.random.EasyRandom
 import org.jeasy.random.EasyRandomParameters
 import org.junit.jupiter.api.Test
-import ru.sokomishalov.commons.core.log.Loggable
-import ru.sokomishalov.commons.core.string.isNotNullOrBlank
 import javax.xml.bind.JAXBContext
 import javax.xml.bind.JAXBElement
 import javax.xml.namespace.QName
@@ -41,11 +42,9 @@ class SoapMapperTest {
 
         val envelope = SoapEnvelope(body = body, header = header)
 
-        val result = mapper.writeValueAsString(envelope)
+        val result = mapper.writeValueAsString(envelope).also { println(it) }
 
-        logInfo { result }
-
-        assertTrue { result.isNotNullOrBlank() }
+        assertFalse { result.isNullOrBlank() }
 
         listOf(
             ":Action>",
@@ -87,7 +86,7 @@ class SoapMapperTest {
         val content = readResource("/example/get_person_output_ws_addr.xml")
         val soapEnvelope = mapper.readValue<SoapAddressingHeaders?, GetPersonOutput?>(content)
 
-        logInfo { mapper.writeValueAsString(soapEnvelope) }
+        mapper.writeValueAsString(soapEnvelope).also { println(it) }
         assertNotNull(soapEnvelope)
 
         assertNotNull(soapEnvelope.header)
@@ -104,9 +103,9 @@ class SoapMapperTest {
         assertNotNull(pojo.listOfSwiPersonIO)
         assertEquals(2, pojo.listOfSwiPersonIO?.contact?.size)
         pojo.listOfSwiPersonIO.contact.forEach {
-            assertTrue { it.id.value.isNotNullOrBlank() }
-            assertTrue { it.firstName.isNotNullOrBlank() }
-            assertTrue { it.lastName.isNotNullOrBlank() }
+            assertFalse { it.id.value.isNullOrBlank() }
+            assertFalse { it.firstName.isNullOrBlank() }
+            assertFalse { it.lastName.isNullOrBlank() }
         }
     }
 
@@ -115,7 +114,7 @@ class SoapMapperTest {
         val content = readResource("/example/soap_fault_1_1.xml")
         val soapFault = assertFailsWith<SoapFault> { mapper.readValueBody<GetPersonOutput>(content) }
 
-        logInfo { mapper.writeValueAsString(soapFault) }
+        mapper.writeValueAsString(soapFault).also { println(it) }
         assertNotNull(soapFault)
         assertNotNull(soapFault)
         assertFalse { soapFault.message.isNullOrBlank() }
@@ -127,17 +126,45 @@ class SoapMapperTest {
         val content = readResource("/example/soap_fault_1_2.xml")
         val soapFault = assertFailsWith<SoapFault> { mapper.readValueBody<GetPersonOutput>(content) }
 
-        logInfo { mapper.writeValueAsString(soapFault) }
+        mapper.writeValueAsString(soapFault).also { println(it) }
         assertNotNull(soapFault)
         assertNotNull(soapFault)
         assertFalse { soapFault.message.isNullOrBlank() }
         assertFalse { soapFault.code.isNullOrBlank() }
     }
 
+    @Test
+    fun `GH-36`() {
+        val first = AppMonDetailsStrict().apply {
+            bpId = random()
+            bpName = random()
+        }
+        val second = ControllObject().apply {
+            timeout = random()
+        }
+
+        val header = SoapMultipleHeaders(first, second)
+        val body = random<GetGroupListRequest>()
+
+        val envelope = SoapEnvelope(body = body, header = header)
+
+        val result = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(envelope).also { println(it) }
+
+        listOf(
+            ":AppMonDetailsStrict",
+            ":ControllObject",
+            ":bpId",
+            ":bpName",
+            ":timeout",
+        ).forEach {
+            assertTrue("$it is not present") { it in result }
+        }
+    }
+
     private fun readResource(path: String) = javaClass.getResource(path)?.readText().orEmpty()
     private inline fun <reified T> random(): T = RANDOM.nextObject(T::class.java)
 
-    companion object : Loggable {
+    companion object {
         private val RANDOM: EasyRandom = EasyRandom(
             EasyRandomParameters()
                 .charset(Charsets.UTF_8)
