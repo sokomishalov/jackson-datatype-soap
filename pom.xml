@@ -6,9 +6,11 @@
 
     <groupId>ru.sokomishalov.jackson</groupId>
     <artifactId>jackson-dataformat-soap</artifactId>
-    <version>0.2.0-SHAPSHOT</version>
+    <version>${revision}</version>
 
     <properties>
+        <revision>0.2.0-SNAPSHOT</revision>
+
         <java.version>1.8</java.version>
         <kotlin.version>1.6.20</kotlin.version>
         <jackson.version>2.13.2.20220328</jackson.version>
