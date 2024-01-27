@@ -76,8 +76,7 @@ internal class SoapEnvelopeDeserializers : Deserializers.Base() {
                                 sr.nextTag() == START_ELEMENT && sr.localName == "Fault" -> {
                                     sr.soapFault()
                                 }
-                                bodyClass != null && bodyClass != Nothing::class.java -> {
-                                    sr.nextTag()
+                                bodyClass != null && bodyClass != Nothing::class.java && bodyClass != Void::class.java -> {
                                     body = parser.readValueAs(bodyClass)
                                 }
                             }

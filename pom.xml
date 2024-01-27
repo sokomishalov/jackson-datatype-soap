@@ -12,8 +12,8 @@
         <revision>0.2.1-SNAPSHOT</revision>
 
         <java.version>1.8</java.version>
-        <kotlin.version>1.6.20</kotlin.version>
-        <jackson.version>2.13.2.20220328</jackson.version>
+        <kotlin.version>1.9.20</kotlin.version>
+        <jackson.version>2.16.1</jackson.version>
         <jeasy-random.version>4.3.0</jeasy-random.version>
 
         <maven.compiler.source>${java.version}</maven.compiler.source>
@@ -133,7 +133,7 @@
             <plugin>
                 <groupId>org.apache.cxf</groupId>
                 <artifactId>cxf-codegen-plugin</artifactId>
-                <version>3.5.2</version>
+                <version>3.5.7</version>
                 <executions>
                     <execution>
                         <id>generate-sources</id>
@@ -159,7 +159,7 @@
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>flatten-maven-plugin</artifactId>
-                <version>1.2.7</version>
+                <version>1.6.0</version>
                 <configuration>
                     <updatePomFile>true</updatePomFile>
                     <flattenMode>resolveCiFriendliesOnly</flattenMode>
@@ -188,7 +188,7 @@
                     <!-- mvn license:format -->
                     <groupId>com.mycila</groupId>
                     <artifactId>license-maven-plugin</artifactId>
-                    <version>4.1</version>
+                    <version>4.3</version>
                     <configuration>
                         <header>header.txt</header>
                         <includes>
@@ -243,7 +243,7 @@
                     <plugin>
                         <groupId>org.jetbrains.dokka</groupId>
                         <artifactId>dokka-maven-plugin</artifactId>
-                        <version>1.6.10</version>
+                        <version>1.9.10</version>
                         <executions>
                             <execution>
                                 <phase>pre-site</phase>
@@ -257,7 +257,7 @@
                                 <plugin>
                                     <groupId>org.jetbrains.dokka</groupId>
                                     <artifactId>kotlin-as-java-plugin</artifactId>
-                                    <version>1.5.30</version>
+                                    <version>1.9.10</version>
                                 </plugin>
                             </dokkaPlugins>
                         </configuration>
