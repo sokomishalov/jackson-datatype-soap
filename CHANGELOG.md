@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.3.0](https://github.com/sokomishalov/jackson-datatype-soap/tree/0.3.0) (2024-01-31)
+
+[Full Changelog](https://github.com/sokomishalov/jackson-datatype-soap/compare/0.2.0...0.3.0)
+
+**Closed issues:**
+
+- javax is now moved to jakarta [\#70](https://github.com/sokomishalov/jackson-datatype-soap/issues/70)
+
+**Merged pull requests:**
+
+- split into two artifacts - jakarta and jaxb \#70 [\#71](https://github.com/sokomishalov/jackson-datatype-soap/pull/71) ([sokomishalov](https://github.com/sokomishalov))
+
 ## [0.2.0](https://github.com/sokomishalov/jackson-datatype-soap/tree/0.2.0) (2022-04-17)
 
 [Full Changelog](https://github.com/sokomishalov/jackson-datatype-soap/compare/0.1.1...0.2.0)
