@@ -1,0 +1,105 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+             xmlns:getrequest="http://www.siebel.com/xml/SwiPersonIOGetRequest"
+             xmlns:getresponse="http://www.siebel.com/xml/SwiPersonIO"
+             xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+             xmlns:tns="http://xmlns.oracle.com/apps/mdm/customer"
+             xmlns="http://schemas.xmlsoap.org/wsdl/"
+             targetNamespace="http://xmlns.oracle.com/apps/mdm/customer">
+
+    <types>
+        <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+                    xmlns="http://www.siebel.com/xml/SwiPersonIOGetRequest"
+                    targetNamespace="http://www.siebel.com/xml/SwiPersonIOGetRequest"
+                    elementFormDefault="qualified">
+            <xsd:element name="ListOfSwiPersonIO" type="ListOfSwiPersonIO"/>
+            <xsd:complexType name="ListOfSwiPersonIO">
+                <xsd:sequence>
+                    <xsd:element name="Contact" type="Contact" maxOccurs="unbounded"/>
+                </xsd:sequence>
+                <xsd:attribute name="ExternalSystemId" type="xsd:string"/>
+            </xsd:complexType>
+            <xsd:complexType name="Contact">
+                <xsd:sequence>
+                    <xsd:element name="Id" type="xsd:string" nillable="true"/>
+                </xsd:sequence>
+                <xsd:attribute name="operation" type="xsd:string" fixed="Query"/>
+            </xsd:complexType>
+        </xsd:schema>
+
+        <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+                    xmlns="http://www.siebel.com/xml/SwiPersonIO"
+                    targetNamespace="http://www.siebel.com/xml/SwiPersonIO"
+                    elementFormDefault="qualified">
+            <xsd:element name="ListOfSwiPersonIO" type="ListOfSwiPersonIO"/>
+            <xsd:complexType name="ListOfSwiPersonIO">
+                <xsd:sequence>
+                    <xsd:element name="Contact" type="Contact" maxOccurs="unbounded"/>
+                </xsd:sequence>
+                <xsd:attribute name="ExternalSystemId" type="xsd:string"/>
+                <xsd:attribute name="ExternalSystemName" type="xsd:string"/>
+                <xsd:attribute name="EnterpriseServerName" type="xsd:string"/>
+                <xsd:attribute name="Locale" type="xsd:string"/>
+                <xsd:attribute name="Language" type="xsd:string"/>
+            </xsd:complexType>
+            <xsd:complexType name="Contact">
+                <xsd:sequence>
+                    <xsd:element name="Id" type="xsd:string" minOccurs="0" nillable="true"/>
+                    <xsd:element name="BirthDate" type="xsd:string" nillable="true"/>
+                    <xsd:element name="FirstName" type="xsd:string"/>
+                    <xsd:element name="LastName" type="xsd:string"/>
+                    <xsd:element name="MF" type="xsd:string" nillable="true"/>
+                    <xsd:element name="Terminated" type="xsd:string" nillable="true"/>
+                </xsd:sequence>
+                <xsd:attribute name="operation" type="xsd:string"/>
+            </xsd:complexType>
+        </xsd:schema>
+
+        <xsd:schema elementFormDefault="qualified"
+                    targetNamespace="http://xmlns.oracle.com/apps/mdm/customer">
+            <xsd:element name="getPerson_Input">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="ListOfSwiPersonIO" type="getrequest:ListOfSwiPersonIO"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="getPerson_Output">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="ListOfSwiPersonIO" type="getresponse:ListOfSwiPersonIO"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+        </xsd:schema>
+    </types>
+    <message name="getPerson_Input">
+        <part name="getPerson_Input" element="tns:getPerson_Input"/>
+    </message>
+    <message name="getPerson_Output">
+        <part name="getPerson_Output" element="tns:getPerson_Output"/>
+    </message>
+    <portType name="PersonService">
+        <operation name="getPerson">
+            <input message="tns:getPerson_Input"/>
+            <output message="tns:getPerson_Output"/>
+        </operation>
+    </portType>
+    <binding name="PersonService" type="tns:PersonService">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <operation name="getPerson">
+            <soap:operation soapAction="document/http://xmlns.oracle.com/apps/mdm/customer:getPerson"/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+        </operation>
+    </binding>
+    <service name="PersonService">
+        <port name="PersonService" binding="tns:PersonService">
+            <soap:address location="https://example.com"/>
+        </port>
+    </service>
+</definitions>

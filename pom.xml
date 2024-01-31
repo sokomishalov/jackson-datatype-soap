@@ -5,54 +5,30 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>ru.sokomishalov.jackson</groupId>
-    <artifactId>jackson-dataformat-soap</artifactId>
+    <artifactId>jackson-datatype-soap-parent</artifactId>
     <version>${revision}</version>
+    <packaging>pom</packaging>
 
     <properties>
-        <revision>0.2.1-SNAPSHOT</revision>
+        <revision>0.3.0-SNAPSHOT</revision>
 
         <java.version>1.8</java.version>
         <kotlin.version>1.9.20</kotlin.version>
         <jackson.version>2.16.1</jackson.version>
         <jeasy-random.version>4.3.0</jeasy-random.version>
-
         <maven.compiler.source>${java.version}</maven.compiler.source>
         <maven.compiler.target>${java.version}</maven.compiler.target>
     </properties>
 
-    <name>jackson-dataformat-soap</name>
+    <modules>
+        <module>jackson-datatype-soap-common</module>
+        <module>jackson-datatype-soap-jaxb</module>
+        <module>jackson-datatype-soap-jakarta</module>
+    </modules>
+
+    <name>jackson-datatype-soap</name>
     <description>Jackson SOAP</description>
-    <url>https://github.com/sokomishalov/jackson-dataformat-soap/</url>
-
-    <dependencies>
-        <!-- COMPILE -->
-        <dependency>
-            <groupId>org.jetbrains.kotlin</groupId>
-            <artifactId>kotlin-stdlib</artifactId>
-            <version>${kotlin.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.fasterxml.jackson.module</groupId>
-            <artifactId>jackson-module-jaxb-annotations</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.fasterxml.jackson.dataformat</groupId>
-            <artifactId>jackson-dataformat-xml</artifactId>
-        </dependency>
-
-        <!-- TEST -->
-        <dependency>
-            <groupId>org.jetbrains.kotlin</groupId>
-            <artifactId>kotlin-test-junit5</artifactId>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.jeasy</groupId>
-            <artifactId>easy-random-core</artifactId>
-            <version>${jeasy-random.version}</version>
-            <scope>test</scope>
-        </dependency>
-    </dependencies>
+    <url>https://github.com/sokomishalov/jackson-datatype-soap/</url>
 
     <dependencyManagement>
         <dependencies>
@@ -90,72 +66,15 @@
     </licenses>
 
     <scm>
-        <url>https://github.com/sokomishalov/jackson-dataformat-soap</url>
-        <connection>scm:git:git://github.com/sokomishalov/jackson-dataformat-soap.git</connection>
-        <developerConnection>scm:git:ssh://github.com/sokomishalov/jackson-dataformat-soap.git</developerConnection>
+        <url>https://github.com/sokomishalov/jackson-datatype-soap</url>
+        <connection>scm:git:git://github.com/sokomishalov/jackson-datatype-soap.git</connection>
+        <developerConnection>scm:git:ssh://github.com/sokomishalov/jackson-datatype-soap.git</developerConnection>
     </scm>
 
     <build>
         <sourceDirectory>${project.basedir}/src/main/kotlin</sourceDirectory>
         <testSourceDirectory>${project.basedir}/src/test/kotlin</testSourceDirectory>
         <plugins>
-            <plugin>
-                <groupId>org.jetbrains.kotlin</groupId>
-                <artifactId>kotlin-maven-plugin</artifactId>
-                <version>${kotlin.version}</version>
-                <dependencies>
-                    <dependency>
-                        <groupId>org.jetbrains.kotlin</groupId>
-                        <artifactId>kotlin-maven-allopen</artifactId>
-                        <version>${kotlin.version}</version>
-                    </dependency>
-                </dependencies>
-                <configuration>
-                    <jvmTarget>${java.version}</jvmTarget>
-                </configuration>
-                <executions>
-                    <execution>
-                        <id>compile</id>
-                        <phase>process-sources</phase>
-                        <goals>
-                            <goal>compile</goal>
-                        </goals>
-                    </execution>
-                    <execution>
-                        <id>test-compile</id>
-                        <phase>test-compile</phase>
-                        <goals>
-                            <goal>test-compile</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.cxf</groupId>
-                <artifactId>cxf-codegen-plugin</artifactId>
-                <version>3.5.7</version>
-                <executions>
-                    <execution>
-                        <id>generate-sources</id>
-                        <phase>generate-sources</phase>
-                        <configuration>
-                            <wsdlRoot>src/main/resources/wsdl</wsdlRoot>
-                            <sourceRoot>${project.build.directory}/generated-sources/cxf</sourceRoot>
-                            <wsdlOptions>
-                                <wsdlOption>
-                                    <wsdl>${project.basedir}/src/test/resources/wsdl/PersonService.wsdl</wsdl>
-                                </wsdlOption>
-                                <wsdlOption>
-                                    <wsdl>${project.basedir}/src/test/resources/wsdl/issue-36.wsdl</wsdl>
-                                </wsdlOption>
-                            </wsdlOptions>
-                        </configuration>
-                        <goals>
-                            <goal>wsdl2java</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>flatten-maven-plugin</artifactId>

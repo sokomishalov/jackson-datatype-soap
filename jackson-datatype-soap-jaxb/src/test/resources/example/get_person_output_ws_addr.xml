@@ -1,0 +1,36 @@
+<SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/">
+    <SOAP-ENV:Header xmlns:wsa="http://www.w3.org/2005/08/addressing">
+        <wsa:Action>GetPerson</wsa:Action>
+        <wsa:MessageID>uuid:6B29FC40-CA47-1067-B31D-00DD010662DA</wsa:MessageID>
+        <wsa:From>http://www.w3.org/2005/08/addressing/anonymous</wsa:From>
+        <wsa:To>http://www.w3.org/2005/08/addressing/anonymous</wsa:To>
+        <wsa:ReplyTo>
+            <wsa:Address>http://www.w3.org/2005/08/addressing/anonymous</wsa:Address>
+        </wsa:ReplyTo>
+        <wsa:FaultTo>
+            <wsa:Address>http://www.w3.org/2005/08/addressing/anonymous</wsa:Address>
+        </wsa:FaultTo>
+    </SOAP-ENV:Header>
+    <SOAP-ENV:Body>
+        <ns:getPerson_Output xmlns:ns="http://xmlns.oracle.com/apps/mdm/customer">
+            <ListOfSwiPersonIO xmlns="http://www.siebel.com/xml/SwiPersonIO">
+                <Contact>
+                    <Id>1</Id>
+                    <BirthDate>01/01/1970</BirthDate>
+                    <FirstName>Ivan</FirstName>
+                    <LastName>Ivanov</LastName>
+                    <MF>1</MF>
+                    <Terminated/>
+                </Contact>
+                <Contact>
+                    <Id>2</Id>
+                    <BirthDate>01/01/1970</BirthDate>
+                    <FirstName>Petr</FirstName>
+                    <LastName>Petrov</LastName>
+                    <MF>1</MF>
+                    <Terminated/>
+                </Contact>
+            </ListOfSwiPersonIO>
+        </ns:getPerson_Output>
+    </SOAP-ENV:Body>
+</SOAP-ENV:Envelope>
