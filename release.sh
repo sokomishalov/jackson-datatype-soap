@@ -16,7 +16,7 @@ git add pom.xml
 docker run -it --rm -e CHANGELOG_GITHUB_TOKEN -v "$(pwd)":/usr/local/src/your-app \
     githubchangeloggenerator/github-changelog-generator \
     -u sokomishalov \
-    -p jackson-dataformat-soap \
+    -p jackson-datatype-soap \
     --unreleased false \
     --future-release "$NEW_VERSION"
 git add CHANGELOG.md
