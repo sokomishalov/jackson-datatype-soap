@@ -3,7 +3,7 @@ jackson-datatype-soap
 ~~Here should be some fancy logo~~
 
 [![Apache License 2](https://img.shields.io/badge/license-ASF2-blue.svg)](https://choosealicense.com/licenses/apache-2.0/)
-[![](https://img.shields.io/maven-central/v/ru.sokomishalov.jackson/jackson-datatype-soap)](https://mvnrepository.com/artifact/ru.sokomishalov.jackson/jackson-datatype-soap-jakarta)
+[![](https://img.shields.io/maven-central/v/ru.sokomishalov.jackson/jackson-datatype-soap-jakarta)](https://mvnrepository.com/artifact/ru.sokomishalov.jackson/jackson-datatype-soap-jakarta)
 [![](https://img.shields.io/jitpack/v/github/sokomishalov/jackson-datatype-soap)](https://jitpack.io/#sokomishalov/jackson-datatype-soap)
 
 ## Overview
