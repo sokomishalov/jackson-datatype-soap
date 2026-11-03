@@ -13,6 +13,8 @@
     <artifactId>jackson-datatype-soap-common</artifactId>
     <version>${revision}</version>
 
+    <name>jackson-datatype-soap-common</name>
+
     <dependencies>
         <!-- COMPILE -->
         <dependency>

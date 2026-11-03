@@ -22,9 +22,21 @@ import com.fasterxml.jackson.dataformat.xml.XmlMapper
 /**
  * @author sokomishalov
  */
-class SoapMapper : XmlMapper() {
-    init {
-        registerModule(SoapModule())
+class SoapMapper : XmlMapper {
+
+    /**
+     * @param module e.g. `SoapModule(soapEnvelopeNamespace = SOAP_12_ENVELOPE_NAMESPACE)` to write SOAP 1.2 envelopes
+     */
+    @JvmOverloads
+    constructor(module: SoapModule = SoapModule()) : super() {
+        registerModule(module)
+    }
+
+    private constructor(src: SoapMapper) : super(src)
+
+    override fun copy(): SoapMapper {
+        _checkInvalidCopy(SoapMapper::class.java)
+        return SoapMapper(this)
     }
 
     @JvmOverloads

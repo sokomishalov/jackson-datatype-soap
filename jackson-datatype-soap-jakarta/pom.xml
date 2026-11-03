@@ -13,6 +13,8 @@
     <artifactId>jackson-datatype-soap-jakarta</artifactId>
     <version>${revision}</version>
 
+    <name>jackson-datatype-soap-jakarta</name>
+
     <dependencies>
         <!-- COMPILE -->
         <dependency>
@@ -29,13 +31,13 @@
         <dependency>
             <groupId>jakarta.xml.ws</groupId>
             <artifactId>jakarta.xml.ws-api</artifactId>
-            <version>4.0.1</version>
+            <version>4.0.3</version>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.glassfish.jaxb</groupId>
             <artifactId>jaxb-runtime</artifactId>
-            <version>4.0.4</version>
+            <version>4.0.9</version>
             <scope>test</scope>
         </dependency>
         <dependency>
@@ -89,7 +91,7 @@
             <plugin>
                 <groupId>org.apache.cxf</groupId>
                 <artifactId>cxf-codegen-plugin</artifactId>
-                <version>4.0.3</version>
+                <version>4.2.4</version>
                 <executions>
                     <execution>
                         <id>generate-test-sources</id>
@@ -115,7 +117,7 @@
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>build-helper-maven-plugin</artifactId>
-                <version>3.5.0</version>
+                <version>3.6.2</version>
                 <executions>
                     <execution>
                         <id>add-test-sources</id>
@@ -133,7 +135,7 @@
             </plugin>
             <plugin>
                 <artifactId>maven-surefire-plugin</artifactId>
-                <version>3.2.5</version>
+                <version>3.6.1</version>
             </plugin>
         </plugins>
     </build>

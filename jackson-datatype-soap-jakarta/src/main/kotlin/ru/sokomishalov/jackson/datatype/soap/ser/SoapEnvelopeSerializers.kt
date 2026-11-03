@@ -52,19 +52,20 @@ internal class SoapEnvelopeSerializers(private val ns: String) : Serializers.Bas
                     setNextName(QName(ns, "Envelope"))
                     writeStartObject()
                     staxWriter.writeNamespace("xsi", XML_SCHEMA_NAMESPACE)
-                    serializeElement(localPart = "Header", element = envelope.header, isHeader = true)
-                    serializeElement(localPart = "Body", element = envelope.body, isHeader = false)
+                    // Header is optional, Body is mandatory
+                    if (envelope.header.isPresent) serializeElement(localPart = "Header", element = envelope.header, isHeader = true, provider = provider)
+                    serializeElement(localPart = "Body", element = envelope.body, isHeader = false, provider = provider)
                     writeEndObject()
                 }
             }
         }
 
-        private fun ToXmlGenerator.serializeElement(localPart: String, element: Any?, isHeader: Boolean) {
+        // values are written through the provider, so ObjectWriter settings (views, features) apply to them
+        private fun ToXmlGenerator.serializeElement(localPart: String, element: Any?, isHeader: Boolean, provider: SerializerProvider) {
             with(this) {
                 setNextName(QName(ns, localPart))
                 writeFieldName(localPart)
 
-                val annotation = element?.javaClass?.getAnnotation(XmlRootElement::class.java)
                 when {
                     isHeader && element is SoapAddressingHeaders -> {
                         writeStartObject()
@@ -82,24 +83,40 @@ internal class SoapEnvelopeSerializers(private val ns: String) : Serializers.Bas
                     }
                     isHeader && element is Iterable<*> -> {
                         writeStartObject()
-                        element.forEach {
-                            if (it != null) {
-                                setNextName(QName(NamespaceCache.getNamespace(it.javaClass), annotation?.name ?: it.javaClass.simpleName))
-                                writeFieldName(annotation?.name ?: it.javaClass.simpleName)
-                                writeObject(it)
-                            }
-                        }
+                        element.forEach { if (it != null) writeRootElement(it, provider) }
                         writeEndObject()
                     }
-                    annotation != null -> {
+                    element is JAXBElement<*> || element?.javaClass?.isAnnotationPresent(XmlRootElement::class.java) == true -> {
                         writeStartObject()
-                        setNextName(QName(NamespaceCache.getNamespace(element.javaClass), annotation.name))
-                        writeFieldName(annotation.name)
-                        writeObject(element)
+                        writeRootElement(element, provider)
                         writeEndObject()
                     }
-                    else -> writeObject(element)
+                    else -> provider.defaultSerializeValue(element, this)
                 }
+            }
+        }
+
+        /**
+         * Writes [element] wrapped in its global element: the `JAXBElement` name or the `@XmlRootElement` one,
+         * falling back to the class simple name in the class namespace when there is no annotation.
+         */
+        private fun ToXmlGenerator.writeRootElement(element: Any, provider: SerializerProvider) {
+            val name = when (element) {
+                is JAXBElement<*> -> element.name
+                else -> {
+                    val annotation = element.javaClass.getAnnotation(XmlRootElement::class.java)
+                    QName(
+                        annotation?.namespace?.takeUnless { it == DEFAULT } ?: NamespaceCache.getNamespace(element.javaClass),
+                        annotation?.name?.takeUnless { it == DEFAULT } ?: if (annotation != null) element.javaClass.simpleName.toXmlName() else element.javaClass.simpleName
+                    )
+                }
+            }
+            setNextName(name)
+            writeFieldName(name.localPart)
+            when {
+                element !is JAXBElement<*> -> provider.defaultSerializeValue(element, this)
+                element.isNil -> XsiNilSerializer.serialize(null, this, provider)
+                else -> provider.defaultSerializeValue(element.value, this)
             }
         }
 
@@ -121,16 +138,32 @@ internal class SoapEnvelopeSerializers(private val ns: String) : Serializers.Bas
             if (value != null) {
                 setNextName(QName(SOAP_ADDRESSING_NAMESPACE, name))
                 writeFieldName(name)
-                writeRawValue(value)
+                writeString(value)
             }
+        }
+
+        private val Any?.isPresent: Boolean get() = this != null && !(this is Iterable<*> && none())
+
+        /** Default `@XmlRootElement` name, as JAXB derives it: `Person` -> `person`, `URLRequest` -> `urlRequest`, `URL` -> `url`. */
+        private fun String.toXmlName(): String {
+            val leadingUpper = takeWhile { it.isUpperCase() }.length
+            val lowered = when {
+                leadingUpper <= 1 || leadingUpper == length -> leadingUpper
+                else -> leadingUpper - 1
+            }
+            return take(lowered).lowercase() + drop(lowered)
+        }
+
+        private companion object {
+            const val DEFAULT = "##default"
         }
     }
 
     internal object JaxbElementSerializer : StdSerializer<JAXBElement<*>>(JAXBElement::class.java) {
         override fun serialize(value: JAXBElement<*>?, gen: JsonGenerator, provider: SerializerProvider) {
             when {
-                value != null && !value.isNil -> gen.writeObject(value.value)
-                else -> gen.writeNull()
+                value != null && !value.isNil -> provider.defaultSerializeValue(value.value, gen)
+                else -> XsiNilSerializer.serialize(null, gen, provider)
             }
         }
     }

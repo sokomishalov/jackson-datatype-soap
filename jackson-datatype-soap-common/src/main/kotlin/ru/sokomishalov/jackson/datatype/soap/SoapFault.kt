@@ -15,10 +15,25 @@
  */
 package ru.sokomishalov.jackson.datatype.soap
 
+import com.fasterxml.jackson.databind.JsonNode
+
 /**
+ * SOAP 1.1 or SOAP 1.2 fault, thrown while reading an envelope whose body carries a `Fault`.
+ *
+ * @property message SOAP 1.1 `faultstring` or the first SOAP 1.2 `Reason/Text`
+ * @property code SOAP 1.1 `faultcode` or SOAP 1.2 `Code/Value`
+ * @property subcodes SOAP 1.2 `Subcode/Value` chain, outermost first
+ * @property node SOAP 1.1 `faultactor` or SOAP 1.2 `Node`
+ * @property role SOAP 1.2 `Role`
+ * @property detail SOAP 1.1 `detail` or SOAP 1.2 `Detail` contents
+ *
  * @author sokomishalov
  */
-data class SoapFault internal constructor(
+data class SoapFault @JvmOverloads constructor(
     override val message: String?,
-    val code: String?
+    val code: String?,
+    val subcodes: List<String> = emptyList(),
+    val node: String? = null,
+    val role: String? = null,
+    val detail: JsonNode? = null
 ) : RuntimeException(message ?: "Unknown SOAP error occurred")

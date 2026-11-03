@@ -17,10 +17,12 @@
 
 package ru.sokomishalov.jackson.datatype.soap
 
+import com.fasterxml.jackson.annotation.JsonInclude
 import com.fasterxml.jackson.databind.PropertyName
 import com.fasterxml.jackson.databind.PropertyName.NO_NAME
 import com.fasterxml.jackson.databind.cfg.MapperConfig
 import com.fasterxml.jackson.databind.introspect.Annotated
+import com.fasterxml.jackson.databind.introspect.AnnotatedMember
 import com.fasterxml.jackson.databind.type.TypeFactory
 import com.fasterxml.jackson.databind.util.ClassUtil
 import com.fasterxml.jackson.module.jakarta.xmlbind.JakartaXmlBindAnnotationIntrospector
@@ -52,15 +54,31 @@ open class SoapJaxbAnnotationIntrospector : JakartaXmlBindAnnotationIntrospector
         }
     }
 
+    /**
+     * `nillable` elements always include `null` (as `xsi:nil`), other members fall back to class-level and mapper-wide
+     * inclusion, which [SoapModule] defaults to `NON_NULL` like a JAXB marshaller. An explicit `@JsonInclude` on the member wins.
+     */
+    override fun findPropertyInclusion(a: Annotated): JsonInclude.Value = when {
+        a is AnnotatedMember && a.hasAnnotation(JsonInclude::class.java) -> JsonInclude.Value.empty()
+        else -> super.findPropertyInclusion(a)
+    }
+
     override fun findNullSerializer(ann: Annotated?): Any? = when {
-        isOutputAsAttribute(null, ann) == true -> null
-        else -> SoapEnvelopeSerializers.XsiNilSerializer
+        ann is AnnotatedMember && ann.isNillable && ann.includesNulls -> SoapEnvelopeSerializers.XsiNilSerializer
+        else -> null
     }
 
     override fun findWrapperName(ann: Annotated): PropertyName? = when {
         ann.type.isCollectionLikeType && !ann.hasAnnotation(XmlElementWrapper::class.java) -> NO_NAME
         else -> super.findWrapperName(ann)
     }
+
+    protected val Annotated.isNillable: Boolean get() =
+        getAnnotation(XmlElement::class.java)?.nillable == true || getAnnotation(XmlElementWrapper::class.java)?.nillable == true
+
+    // a null serializer is used even when inclusion suppresses nulls, so an explicit @JsonInclude must be ALWAYS to get xsi:nil
+    protected val Annotated.includesNulls: Boolean get() =
+        getAnnotation(JsonInclude::class.java)?.value.let { it == null || it == JsonInclude.Include.ALWAYS }
 
     protected val Annotated.parentNamespace: String get() = when (val annotatedElement = annotated) {
         is Field -> annotatedElement.declaringClass.namespace
