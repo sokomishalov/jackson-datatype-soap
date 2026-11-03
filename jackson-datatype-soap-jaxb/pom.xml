@@ -13,6 +13,8 @@
     <artifactId>jackson-datatype-soap-jaxb</artifactId>
     <version>${revision}</version>
 
+    <name>jackson-datatype-soap-jaxb</name>
+
     <dependencies>
         <!-- COMPILE -->
         <dependency>
@@ -89,7 +91,7 @@
             <plugin>
                 <groupId>org.apache.cxf</groupId>
                 <artifactId>cxf-codegen-plugin</artifactId>
-                <version>3.5.7</version>
+                <version>3.6.13</version>
                 <executions>
                     <execution>
                         <id>generate-test-sources</id>
@@ -115,7 +117,7 @@
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>build-helper-maven-plugin</artifactId>
-                <version>3.5.0</version>
+                <version>3.6.2</version>
                 <executions>
                     <execution>
                         <id>add-test-sources</id>
@@ -133,7 +135,7 @@
             </plugin>
             <plugin>
                 <artifactId>maven-surefire-plugin</artifactId>
-                <version>3.2.5</version>
+                <version>3.6.1</version>
             </plugin>
         </plugins>
     </build>

@@ -15,9 +15,14 @@
  */
 package ru.sokomishalov.jackson.datatype.soap
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties
+
 /**
+ * WS-Addressing headers. Other headers next to them, and WS-Addressing elements not modelled here, are ignored on read.
+ *
  * @author sokomishalov
  */
+@JsonIgnoreProperties(ignoreUnknown = true)
 data class SoapAddressingHeaders @JvmOverloads constructor(
     val action: String? = null,
     val messageId: String? = null,
@@ -26,6 +31,7 @@ data class SoapAddressingHeaders @JvmOverloads constructor(
     val replyTo: Endpoint? = null,
     val faultTo: Endpoint? = null
 ) {
+    @JsonIgnoreProperties(ignoreUnknown = true)
     data class Endpoint @JvmOverloads constructor(
         val address: String? = null,
         val serviceName: String? = null

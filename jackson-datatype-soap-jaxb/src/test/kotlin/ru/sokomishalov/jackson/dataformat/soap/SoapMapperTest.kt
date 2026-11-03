@@ -152,8 +152,8 @@ class SoapMapperTest {
         val result = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(envelope).also { println(it) }
 
         listOf(
-            ":AppMonDetailsStrict",
-            ":ControllObject",
+            ":appMonDetailsStrict",
+            ":controllObject",
             ":bpId",
             ":bpName",
             ":timeout",

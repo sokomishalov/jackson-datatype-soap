@@ -12,10 +12,15 @@ import javax.xml.namespace.QName
 internal class AlwaysUseNamespacesXmlSerializerProvider : XmlSerializerProvider {
 
     internal constructor() : super(XmlRootNameLookup())
+    private constructor(src: AlwaysUseNamespacesXmlSerializerProvider) : super(src)
     internal constructor(src: XmlSerializerProvider, config: SerializationConfig?, f: SerializerFactory?) : super(src, config, f)
 
     override fun createInstance(config: SerializationConfig?, jsf: SerializerFactory?): DefaultSerializerProvider {
         return AlwaysUseNamespacesXmlSerializerProvider(this, config, jsf)
+    }
+
+    override fun copy(): DefaultSerializerProvider {
+        return AlwaysUseNamespacesXmlSerializerProvider(this)
     }
 
     override fun _initWithRootName(xgen: ToXmlGenerator, rootName: QName?) {

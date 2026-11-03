@@ -20,6 +20,7 @@
 package ru.sokomishalov.jackson.datatype.soap
 
 import com.ctc.wstx.stax.WstxOutputFactory
+import com.fasterxml.jackson.annotation.JsonInclude
 import com.fasterxml.jackson.databind.DeserializationFeature.*
 import com.fasterxml.jackson.databind.MapperFeature.ACCEPT_CASE_INSENSITIVE_ENUMS
 import com.fasterxml.jackson.databind.MapperFeature.ACCEPT_CASE_INSENSITIVE_PROPERTIES
@@ -51,6 +52,8 @@ open class SoapModule @JvmOverloads constructor(
                 enable(ACCEPT_CASE_INSENSITIVE_PROPERTIES, ACCEPT_CASE_INSENSITIVE_ENUMS)
                 disable(FAIL_ON_EMPTY_BEANS, WRITE_DATES_AS_TIMESTAMPS)
                 disable(FAIL_ON_UNKNOWN_PROPERTIES, FAIL_ON_READING_DUP_TREE_KEY)
+                // like a JAXB marshaller: null is omitted unless the element is nillable
+                setDefaultPropertyInclusion(JsonInclude.Include.NON_NULL)
                 ((factory as? XmlFactory)?.xmlOutputFactory as? WstxOutputFactory)?.apply { config.automaticNsPrefix = namespacePrefix }
             }
             super.setupModule(this)

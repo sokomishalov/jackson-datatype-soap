@@ -50,3 +50,4 @@ local.properties
 ### custom ###
 .flattened-pom.xml
 pom.xml.versionsBackup
+docs/
