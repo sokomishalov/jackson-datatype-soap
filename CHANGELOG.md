@@ -1,5 +1,22 @@
 # Changelog
 
+## [0.4.0](https://github.com/sokomishalov/jackson-datatype-soap/tree/0.4.0) (2026-11-03)
+
+[Full Changelog](https://github.com/sokomishalov/jackson-datatype-soap/compare/0.3.0...0.4.0)
+
+**Merged pull requests:**
+
+- 0.4.0: SOAP standard fixes, dependency bumps, Central Portal publishing [\#204](https://github.com/sokomishalov/jackson-datatype-soap/pull/204) ([sokomishalov](https://github.com/sokomishalov))
+- Bump org.apache.maven.plugins:maven-gpg-plugin from 3.1.0 to 3.2.0 [\#84](https://github.com/sokomishalov/jackson-datatype-soap/pull/84) ([dependabot[bot]](https://github.com/apps/dependabot))
+- Bump kotlin.version from 1.9.22 to 1.9.23 [\#81](https://github.com/sokomishalov/jackson-datatype-soap/pull/81) ([dependabot[bot]](https://github.com/apps/dependabot))
+- Bump org.jetbrains.dokka:dokka-maven-plugin from 1.9.10 to 1.9.20 [\#80](https://github.com/sokomishalov/jackson-datatype-soap/pull/80) ([dependabot[bot]](https://github.com/apps/dependabot))
+- Bump org.apache.maven.plugins:maven-gpg-plugin from 3.0.1 to 3.1.0 [\#78](https://github.com/sokomishalov/jackson-datatype-soap/pull/78) ([dependabot[bot]](https://github.com/apps/dependabot))
+- Bump org.apache.maven.plugins:maven-javadoc-plugin from 3.3.2 to 3.6.3 [\#77](https://github.com/sokomishalov/jackson-datatype-soap/pull/77) ([dependabot[bot]](https://github.com/apps/dependabot))
+- Bump org.apache.maven.plugins:maven-source-plugin from 3.2.1 to 3.3.0 [\#76](https://github.com/sokomishalov/jackson-datatype-soap/pull/76) ([dependabot[bot]](https://github.com/apps/dependabot))
+- Bump org.apache.maven.plugins:maven-surefire-plugin from 2.22.2 to 3.2.5 [\#74](https://github.com/sokomishalov/jackson-datatype-soap/pull/74) ([dependabot[bot]](https://github.com/apps/dependabot))
+- Bump kotlin.version from 1.9.20 to 1.9.22 [\#73](https://github.com/sokomishalov/jackson-datatype-soap/pull/73) ([dependabot[bot]](https://github.com/apps/dependabot))
+- Bump nexus-staging-maven-plugin from 1.6.12 to 1.6.13 [\#44](https://github.com/sokomishalov/jackson-datatype-soap/pull/44) ([dependabot[bot]](https://github.com/apps/dependabot))
+
 ## [0.3.0](https://github.com/sokomishalov/jackson-datatype-soap/tree/0.3.0) (2024-01-31)
 
 [Full Changelog](https://github.com/sokomishalov/jackson-datatype-soap/compare/0.2.0...0.3.0)
